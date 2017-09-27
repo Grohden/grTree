@@ -9,6 +9,7 @@ const error     = utils.colors.red;
 const info      = utils.colors.magenta;
 const success   = utils.colors.green;
 
+const jshint    = require("gulp-jshint");
 const babel     = require("gulp-babel");
 const concat    = require("gulp-concat");
 const sass      = require("gulp-sass");
@@ -45,11 +46,13 @@ function compileScripts(event){
 
     return gulp
         .src(helpers.scripts.compile())
-        .pipe(cache(helpers.scripts.cacheName))
+        .pipe(cache(helpers.scripts.cacheName()))
+        .pipe(jshint())
+		.pipe(jshint.reporter('jshint-stylish'))
         .pipe(babel())
         // Prefiro não concatenar os fontes, mas caso nescessario é so descomentar o rember e adicionar um concat.
-        //.pipe(remember(helpers.scripts.cacheName)) 
-        .pipe(gulp.dest(helpers.scripts.dest()))
+        .pipe(remember(helpers.scripts.cacheName())) 
+        .pipe(gulp.dest(helpers.scripts.dest()));
 }
 
 /* Tasks */

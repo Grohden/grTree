@@ -1,0 +1,24 @@
+{
+  "name": "grtree",
+  "description": "A simple angularJS tree",
+  "main": "index.js",
+  "authors": [
+    "Gabriel Rohden"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "tree"
+  ],
+  "homepage": "https://github.com/Grohden/grTree",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.6.6"
+  }
+}

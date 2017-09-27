@@ -2,11 +2,19 @@
 
 A simple tree writen in angular.
 
+## Setup
+
+Sett
+
+A simple `npm install` should install all dev and non dev dependencies.
+
 ## TODO
 
-- [x] Setup gulp enviroment
-- [ ] Setup bower
-- [ ] Setup karma+jasmine and angular mocks and an linter
+- [ ] Setup gulp enviroment
+  - [x] Setup bower
+  - [x] Setup jshint
+  - [ ] Setup karma+jasmine and angular mocks
+  - [ ] Setup scss
 - [ ] Tree itself, trunk and leafs
   - [ ] Add leaf
   - [ ] Remove leaf
