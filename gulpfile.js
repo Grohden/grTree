@@ -57,11 +57,27 @@ function copyViews() {
     .pipe(gulp.dest(paths.views.build));
 }
 
+//FIXME: handle deletion for cache
+
+function watchScripts(){
+  return gulp.watch(paths.scripts.compile, ['compile:scripts']);
+}
+  
+function watchTemplates(){
+  return gulp.watch(paths.templates.compile, ['compile:templates']);
+}
+  
+function watchViews(){
+  return gulp.watch(paths.views.compile, ['copy:views']);
+}
+
+
 /* Tasks */
 
 //Composed and default
 gulp.task("default", ["compile"]);
 gulp.task("compile", ["compile:scripts","compile:templates", "copy:views"]);
+gulp.task("watch", ["watch:scripts","watch:templates", "watch:views"]);
 
 //Compiles
 gulp.task("compile:scripts", compileScripts);
@@ -69,3 +85,8 @@ gulp.task("compile:templates", compileTemplates);
 
 //Copies
 gulp.task("copy:views", copyViews);
+
+//Watchers
+gulp.task("watch:scripts", watchScripts);
+gulp.task("watch:templates", watchTemplates);
+gulp.task("watch:views", watchViews);
