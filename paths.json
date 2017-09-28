@@ -1,0 +1,17 @@
+{
+  "build":"./build/",
+  "src":"./src/",
+  "templates": {
+    "compile": ["!./src/app/views/**/*.html","!./src/app/views/*.html","./src/app/**/*.html"],
+    "build":"./build/templates/"
+  },
+  "views":{
+    "compile": ["./src/app/views/**/*.html","./src/app/views/*.html"],
+    "build":"./build/"
+  },
+  "scripts": {
+    "cacheName": "scripts",
+    "compile": ["./src/app/**/*.js"],
+    "build": "./build/app/"
+  }
+}
