@@ -1,6 +1,6 @@
 angular.module("Tree").controller("LeafController", [
-    '$scope'
-  , LeafController
+  '$scope',
+  LeafController
 ]);
 
 function LeafController($scope) {

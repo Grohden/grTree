@@ -11,7 +11,17 @@
   },
   "scripts": {
     "cacheName": "scripts",
-    "compile": ["./src/app/**/*.js"],
+    "compile": [
+      "./src/app/**/*.module.js",
+      "./src/app/**/*.constants.js",
+      "./src/app/**/*.config.js",
+      "./src/app/**/*.run.js",
+      "./src/app/**/*.controller.js",
+      "./src/app/**/*.component.js",
+      "./src/app/**/*.service.js",
+      "./src/app/**/*.filter.js",
+      "./src/app/**/*.js"
+    ],
     "build": "./build/app/"
   }
 }
