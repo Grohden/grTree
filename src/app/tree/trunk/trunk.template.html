@@ -1,0 +1,8 @@
+<input ng-model="currentSearch" placeholder="Search here" type="search"/>
+
+<button type="button" ng-click="trkCtrl.addLeaf()"> Add </button>
+<button type="button" ng-click="trkCtrl.removeLeaf()"> Remove </button>
+<tree-leaf
+  ng-repeat="leaf in trkCtrl.leafs"
+  leaf-data="leaf">
+</tree-leaf>
