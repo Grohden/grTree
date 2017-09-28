@@ -31,11 +31,17 @@ function compileScripts(event) {
       .pipe(jshint())
       .pipe(jshint.reporter('jshint-stylish'))
       .pipe(babel())
+        .on("error", logError)
       .pipe(header("(function(){\n"))
       .pipe(footer("\n}());"))
     .pipe(remember(paths.scripts.cacheName))
     .pipe(concat('app.js'))
     .pipe(gulp.dest(paths.scripts.build));
+}
+
+function logError(err) {
+  log(error(err.toString()));
+  this.emit('end');
 }
 
 function compileTemplates() { 
