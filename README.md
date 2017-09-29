@@ -10,7 +10,7 @@ Then you need to run the following **if you do not have these globally installed
 
 * `npm link gulp` - links gulp to the current directory
 
-Then you can run `gulp` and the sources will be generated at the `./build` folder.
+Then you can run `gulp` to generate the sources at `./build` folder. The last step is just run `npm start` :D, then you get a nice simple angularJS Tree.
 
 ## TODO
 

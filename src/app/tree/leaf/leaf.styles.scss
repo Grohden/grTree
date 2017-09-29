@@ -1,3 +1,28 @@
-.leaf-container{
-  border: 1px solid #922727;
+@import "../../_global.variables";
+
+$icon-btn-height: $default-button-height;
+$icon-btn-width: 20px;
+$container-height: 40px;
+
+.leaf-container {
+  position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  .action-buttons.container {
+    display: inline-block;
+    bottom: 5px;
+    right: 0px;
+    width: ($icon-btn-width * 2) + 15px;
+
+    button{
+      display: inline-block;
+      height: $icon-btn-height;
+      width: $icon-btn-width;
+    }
+  }
+
+  .child-leaf{
+  }
+ 
 }

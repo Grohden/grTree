@@ -11,7 +11,7 @@ function LeafController($scope) {
    * @param {Leaf} leaf - Folha a ser adicionada
    */
   _self.addLeaf = function(){
-    _self.leafs.push({title:"sample", description:"sample"});
+    _self.leafs.push({label:"sample", description:"sample"});
   };
 
   /**

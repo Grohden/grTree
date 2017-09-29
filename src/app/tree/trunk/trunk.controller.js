@@ -9,7 +9,7 @@ function TrunkController() {
   
 
   _self.addLeaf = function(){
-    _self.leafs.push({title:"sample", description:"sample"});
+    _self.leafs.push({label:"sample", description:"sample"});
   };
 
   _self.removeLeaf = function(){

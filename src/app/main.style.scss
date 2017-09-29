@@ -1,6 +1,7 @@
+@import "_global.variables";
+
 button, input {
-  min-height: 30px;
-  padding:0px 15px;
+  min-height: $default-button-height;
   border-radius: 2px;
 }
 
