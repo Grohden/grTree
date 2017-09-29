@@ -17,6 +17,9 @@ const babel           = require("gulp-babel");
 const concat          = require("gulp-concat");
 const sass            = require("gulp-sass");
 
+//node
+const del = require("del");
+
 //App paths
 const paths = require("./paths.json");
 
@@ -71,13 +74,20 @@ function watchViews(){
   return gulp.watch(paths.views.compile, ['copy:views']);
 }
 
+//Clear all folders except the vendor ones (which are created by bower)
+function clearBuild() { 
+  return del(paths.clean);
+}
 
 /* Tasks */
 
 //Composed and default
 gulp.task("default", ["compile"]);
-gulp.task("compile", ["compile:scripts","compile:templates", "copy:views"]);
-gulp.task("watch", ["watch:scripts","watch:templates", "watch:views"]);
+gulp.task("clear", clearBuild);
+
+//General
+gulp.task("compile", ["clear","compile:scripts", "compile:templates", "copy:views"]);
+gulp.task("watch", ["clear", "watch:scripts","watch:templates", "watch:views"]);
 
 //Compiles
 gulp.task("compile:scripts", compileScripts);

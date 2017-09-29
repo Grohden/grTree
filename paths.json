@@ -1,6 +1,16 @@
 {
   "build":"./build/",
   "src":"./src/",
+  "clean":[
+    "build/**/*",
+    "!build/vendor",
+    "!build/vendor/*",  
+    "!build/vendor/**/*"
+  ],
+  "styles":{
+    "compile":[""],
+    "build":"./build/"
+  },
   "templates": {
     "compile": ["!./src/app/views/**/*.html","!./src/app/views/*.html","./src/app/**/*.html"],
     "build":"./build/templates/"
