@@ -8,8 +8,9 @@
     "!build/vendor/**/*"
   ],
   "styles":{
-    "compile":[""],
-    "build":"./build/"
+    "compile":["./src/**/*.scss"],
+    "build":"./build/",
+    "cacheName":"styles"
   },
   "templates": {
     "compile": ["!./src/app/views/**/*.html","!./src/app/views/*.html","./src/app/**/*.html"],

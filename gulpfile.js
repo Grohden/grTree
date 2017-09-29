@@ -58,6 +58,17 @@ function compileTemplates() {
     .pipe(gulp.dest(paths.templates.build));
 }
 
+function compileSass() { 
+  return gulp
+  .src(paths.styles.compile)
+  .pipe(cache(paths.styles.cacheName))
+    .pipe(sass().on("error", sass.logError))
+  .pipe(remember(paths.styles.cacheName))
+  .pipe(concat('app.css'))
+  .pipe(gulp.dest(paths.styles.build));
+
+}
+
 function copyViews() {
   return gulp
     .src(paths.views.compile)
@@ -76,6 +87,10 @@ function watchTemplates(){
   
 function watchViews(){
   return gulp.watch(paths.views.compile, ['copy:views']);
+}
+
+function watchSass(){
+  return gulp.watch(paths.styles.compile, ['compile:sass']);
 }
 
 function initBrowserSync() {
@@ -97,6 +112,7 @@ gulp.task("clear", clearBuild);
 gulp.task("compile", [
   "clear",
   "compile:scripts",
+  "compile:sass",
   "compile:templates",
   "copy:views"
 ]);
@@ -105,19 +121,23 @@ gulp.task("watch", [
   "compile",
   "browser-sync",
   "watch:scripts",
+  "watch:sass",
   "watch:templates",
   "watch:views"
 ]);
+
 gulp.task('browser-sync', initBrowserSync)
 
 //Compiles
 gulp.task("compile:scripts", compileScripts);
+gulp.task("compile:sass", compileSass);
 gulp.task("compile:templates", compileTemplates);
 
 //Copies
 gulp.task("copy:views", copyViews);
 
 //Watchers
-gulp.task("watch:scripts", watchScripts);
-gulp.task("watch:templates", watchTemplates);
-gulp.task("watch:views", watchViews);
+gulp.task("watch:scripts",    watchScripts);
+gulp.task("watch:templates",  watchTemplates);
+gulp.task("watch:views",      watchViews);
+gulp.task("watch:sass",       watchSass);

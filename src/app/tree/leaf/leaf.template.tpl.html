@@ -1,5 +1,5 @@
 <div class="leaf-container" ng-click="trkCtrl.select(lefCtrl)">
-    <h3>{{ lefCtrl.leafData.title }}</h3>
+    <p>{{ lefCtrl.leafData.title }}</p>
     
     <button type="button" ng-click="lefCtrl.addLeaf()"> + </button>
     <button type="button" ng-click="lefCtrl.removeLeaf()"> - </button>
@@ -8,5 +8,5 @@
       ng-repeat="leaf in lefCtrl.leafs"
       leaf-data="leaf">
     </tree-leaf>
-  </div>
+</div>
 
