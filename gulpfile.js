@@ -5,6 +5,8 @@ const header    = require("gulp-header");
 const footer    = require("gulp-footer");
 
 //Utils
+const browserSync = require('browser-sync').create();
+const bsConfigs   = require("./bs-config.js");
 const utils   = require("gulp-util");
 const log     = utils.log;
 const error   = utils.colors.red;
@@ -16,6 +18,8 @@ const jshint          = require("gulp-jshint");
 const babel           = require("gulp-babel");
 const concat          = require("gulp-concat");
 const sass            = require("gulp-sass");
+
+
 
 //node
 const del = require("del");
@@ -74,6 +78,10 @@ function watchViews(){
   return gulp.watch(paths.views.compile, ['copy:views']);
 }
 
+function initBrowserSync() {
+    browserSync.init(bsConfigs);
+}
+
 //Clear all folders except the vendor ones (which are created by bower)
 function clearBuild() { 
   return del(paths.clean);
@@ -81,13 +89,26 @@ function clearBuild() {
 
 /* Tasks */
 
-//Composed and default
+//Composed and default and others
 gulp.task("default", ["compile"]);
 gulp.task("clear", clearBuild);
 
 //General
-gulp.task("compile", ["clear","compile:scripts", "compile:templates", "copy:views"]);
-gulp.task("watch", ["clear", "watch:scripts","watch:templates", "watch:views"]);
+gulp.task("compile", [
+  "clear",
+  "compile:scripts",
+  "compile:templates",
+  "copy:views"
+]);
+
+gulp.task("watch", [
+  "compile",
+  "browser-sync",
+  "watch:scripts",
+  "watch:templates",
+  "watch:views"
+]);
+gulp.task('browser-sync', initBrowserSync)
 
 //Compiles
 gulp.task("compile:scripts", compileScripts);

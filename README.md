@@ -19,7 +19,7 @@ Then you can run `gulp` and the sources will be generated at the `./build` folde
   * [x] Setup jshint
   * [ ] Setup karma+jasmine and angular mocks
   * [ ] Setup scss
-  * [ ] Setup browsersync
+  * [x] Setup browsersync
 * [ ] Tree itself, trunk and leafs
   * [ ] Add leaf
   * [ ] Remove leaf
