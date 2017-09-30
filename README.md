@@ -21,7 +21,8 @@ Then you can run `gulp` to generate the sources at `./build` folder. The last st
   * [x] Setup scss
   * [x] Setup browsersync
 * [ ] Tree itself, trunk and leafs
-  * [ ] Add leaf
+  * [x] Add leaf
+  * [ ] Select leaf
   * [ ] Remove leaf
   * [ ] Edit a leaf
 * [ ] Search in nodes and its children

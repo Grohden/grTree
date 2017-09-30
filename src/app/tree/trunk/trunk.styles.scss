@@ -3,8 +3,8 @@
 
 .trunk-container {
   border: 1px solid red;
-  width: 300px;
-  padding: 10px;
+  min-width: 300px;
+  padding: 20px 5px;
 
   .trunk-search {
     display: block;
@@ -26,6 +26,9 @@
     .right-buttons{
       right: 0;
     }
+  }
 
+  ul li {
+    list-style: none;
   }
 }
