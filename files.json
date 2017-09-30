@@ -29,7 +29,8 @@
     "compile": [
       "./src/app/**/*.module.js",
       "./src/app/**/*.factory.js",
-      "./src/app/**/*.constants.js",
+      "./src/app/**/*.constant.js",
+      "./src/app/**/*.events.js",
       "./src/app/**/*.config.js",
       "./src/app/**/*.run.js",
       "./src/app/**/*.controller.js",
