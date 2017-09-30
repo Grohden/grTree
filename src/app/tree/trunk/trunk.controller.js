@@ -11,6 +11,14 @@ function TrunkController(Leaf) {
   _self.selectedLeaf = false;
 
   _self.selectLeaf = function (leafController, $event) {
+    const lastSelected = _self.selectedLeaf.leafData;
+
+    //unselect previous
+    if(lastSelected){
+     lastSelected.setSelected(false);
+    }
+
+    leafController.leafData.setSelected(true);
     _self.selectedLeaf = leafController;
 
     if ($event) {

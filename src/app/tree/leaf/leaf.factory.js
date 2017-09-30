@@ -13,6 +13,15 @@ function LeafFactory() {
     let _label = label;
     let _description = description;
     let _expanded = true;
+    let _selected = false;
+
+    function setSelected(value) {
+      _selected = value;
+    }
+
+    function isSelected() {
+      return _selected;
+    }
 
     function setLabel(newLabel) {
       _label = newLabel;
@@ -62,7 +71,9 @@ function LeafFactory() {
       setExpanded,
       hasChildren,
       addLeaf,
-      getLeafs
+      getLeafs,
+      setSelected,
+      isSelected
     };
   }
 

@@ -2,7 +2,7 @@
 
   <div class="leaf-container" ng-click="lefCtrl.trunk.selectLeaf(lefCtrl, $event)">
     <span class="icon" ng-show="leaf.hasChildren()" ng-class="leaf.isExpanded() ? 'icon-angle-down':'icon-angle-right'"></span>
-    <span class="label">{{ leaf.getLabel() }}</span>
+    <span class="label">{{ leaf.getLabel() +' - '+ leaf.isSelected() }}</span>
 
     <ul class="tree-list" ng-show="leaf.isExpanded()">
       <tree-leaf

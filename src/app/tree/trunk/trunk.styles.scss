@@ -29,10 +29,11 @@
   }
 
   ul.tree-list{
-    padding-left: 10px;
+    padding-left: 0;
 
     li {
       list-style: none;
+      border-left: 1px dashed rgba(128, 128, 128, 0.25);
 
       .icon.icon-angle-down{
         position: absolute;
