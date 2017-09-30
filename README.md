@@ -1,16 +1,13 @@
 # GrTree
 
-A simple tree writen in angular.
+A simple tree written in angular.
+
 
 ## Setup
 
-A simple `npm install` should install all dev and non dev dependencies.
+A simple `npm install` should install all dev and non dev dependencies and generate all needed sources at `./build` folder.
 
-Then you need to run the following **if you do not have these globally installed**:
-
-* `npm link gulp` - links gulp to the current directory
-
-Then you can run `gulp` to generate the sources at `./build` folder. The last step is just run `npm start` :D, then you get a nice simple angularJS Tree.
+Then you can run `npm start` and start to develop :D
 
 ## TODO
 
@@ -22,7 +19,7 @@ Then you can run `gulp` to generate the sources at `./build` folder. The last st
   * [x] Setup browsersync
 * [ ] Tree itself, trunk and leafs
   * [x] Add leaf
-  * [ ] Select leaf
+  * [x] Select leaf
   * [ ] Remove leaf
   * [ ] Edit a leaf
 * [ ] Search in nodes and its children
