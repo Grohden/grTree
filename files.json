@@ -24,6 +24,7 @@
     "cacheName": "scripts",
     "compile": [
       "./src/app/**/*.module.js",
+      "./src/app/**/*.factory.js",
       "./src/app/**/*.constants.js",
       "./src/app/**/*.config.js",
       "./src/app/**/*.run.js",

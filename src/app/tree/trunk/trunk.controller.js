@@ -1,19 +1,25 @@
 angular.module("Tree").controller("TrunkController", [
+  "Leaf",
   TrunkController
 ]);
 
-function TrunkController() {
+function TrunkController(Leaf) {
   const _self = this;
   _self.currentSearch = "";
   _self.leafs = [];
   
 
-  _self.addLeaf = function(){
-    _self.leafs.push({label:"sample", description:"sample"});
+  _self.addLeaf = function (label, description){
+    _self.leafs.push(new Leaf(label, description));
   };
 
-  _self.removeLeaf = function(){
+  _self.saveLeaf = function (label, description) { 
+    data.setLabel(label)
+        .setDescription(description);
+  }
 
-  };
+  _self.requestLeafModel = function () { 
+
+  }
 
 }

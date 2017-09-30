@@ -25,7 +25,7 @@ const sass            = require("gulp-sass");
 const del = require("del");
 
 //App paths
-const paths = require("./paths.json");
+const paths = require("./files.json");
 
 /* Task definitions */
 
