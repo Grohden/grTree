@@ -5,21 +5,30 @@ angular.module("Tree").controller("TrunkController", [
 
 function TrunkController(Leaf) {
   const _self = this;
-  _self.currentSearch = "";
-  _self.leafs = [];
-  
 
-  _self.addLeaf = function (label, description){
-    _self.leafs.push(new Leaf(label, description));
+  _self.leafs = [];
+  _self.currentSearch = "";
+  _self.selectedLeaf = false;
+
+  _self.selectLeaf = function (leafController, $event) {
+    _self.selectedLeaf = leafController;
+
+    if ($event) {
+      $event.stopPropagation();
+    }
   };
 
-  _self.saveLeaf = function (label, description) { 
-    data.setLabel(label)
-        .setDescription(description);
-  }
+  _self.addLeaf = function (label, description) {
+    //const newLeaf = new Leaf(label, description);
+    const newLeaf = new Leaf("Text", "Description");
+    const leafArray = (() => {
+      if (_self.selectedLeaf) {
+        return _self.selectedLeaf.leafs;
+      } else {
+        return _self.leafs;
+      }
+    })();
 
-  _self.requestLeafModel = function () { 
-
-  }
-
+    leafArray.push(newLeaf);
+  };
 }

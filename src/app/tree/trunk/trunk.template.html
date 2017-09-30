@@ -1,13 +1,21 @@
 <div class="trunk-container">
-    <input ng-model="currentSearch" placeholder="Search here" type="search"/>
 
-    <div class="action-buttons">      
+  <div class="trunk-buttons-container">
+    <div class="left-buttons">
       <button type="button" ng-click="trkCtrl.addLeaf()"> Add </button>
       <button type="button" ng-click="trkCtrl.removeLeaf()"> Remove </button>
     </div>
-      
-    <tree-leaf
-      ng-repeat="leaf in trkCtrl.leafs"
-      leaf-data="leaf">
-    </tree-leaf>
+
+    <div class="right-buttons">
+      <button type="button" ng-click="trkCtrl.expandAllTree()"> ^ </button>
+      <button type="button" ng-click="trkCtrl.contractAllTree()"> ^ </button>
+    </div>
+  </div>
+
+  <input class="trunk-search" placeholder="Search here" type="search" ng-model="currentSearch" />
+
+  <ul>
+      <tree-leaf class="leaf-child" ng-repeat="leaf in trkCtrl.leafs" trunk="trkCtrl" leaf-data="leaf"></tree-leaf>      
+  </ul>
+
 </div>

@@ -4,38 +4,8 @@ $icon-btn-height: $default-button-height;
 $icon-btn-width: 20px;
 $container-height: 40px;
 
-.leaf-wrapper{
+
+.leaf-wrapper {
   position: relative;
-
-  .leaf-container {
-    min-width: 300px;
-    min-height: $container-height;
-    position: absolute;
-    padding-left: 50px;
-    padding-right: 10px;
-  
-    .action-buttons.container {
-      display: inline-block;
-      height: 100%;
-      right: 0px;
-      width: ($icon-btn-width * 2) + 15px;
-  
-      button{
-        height: 100%;  
-        width: $icon-btn-width;
-      }
-  
-    }
-
-    .label-input{
-      border-radius: 0;
-      border:none;
-      border-bottom: 1px solid grey;
-      height: 100%;
-    }
-      
-    .child-leaf{
-    }
-   
-  }  
+  margin-left: 10px;
 }

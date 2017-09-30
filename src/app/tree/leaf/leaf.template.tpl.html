@@ -1,15 +1,15 @@
-<div class="leaf-wrapper">
+<li class="leaf-wrapper">
 
-  <div class="leaf-container">
+  <div class="leaf-container" ng-click="lefCtrl.trunk.selectLeaf(lefCtrl, $event)">
+    <button type="button" class="expand">e</button>      
     <span class="label">{{ lefCtrl.leafData.getLabel() }}</span>
-    <div class="action-buttons container">
-      <button type="button" class="right" ng-click="lefCtrl.addLeaf()"> + </button>
-      <button type="button" class="left" ng-click="lefCtrl.removeLeaf()"> - </button>
+
+    <ul class="leaf-children">
+      <tree-leaf 
+        ng-repeat="leaf in lefCtrl.leafs"
+        trunk="lefCtrl.trunk"
+        leaf-data="leaf"
+      ></tree-leaf>
     </div>
-
-    <input ng-if="lefCtrl.isInEditMode" type="text" class="label-input"></input>
-
-    <tree-leaf class="leaf-child" ng-repeat="leaf in lefCtrl.leafs" leaf-data="leaf">
-    </tree-leaf>
-  </div>
-</div>
+  </ul>
+</li>
