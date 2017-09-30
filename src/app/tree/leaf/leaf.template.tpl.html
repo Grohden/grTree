@@ -1,15 +1,15 @@
-<li class="leaf-wrapper">
+<li class="leaf-wrapper" ng-init="leaf = lefCtrl.leafData;">
 
   <div class="leaf-container" ng-click="lefCtrl.trunk.selectLeaf(lefCtrl, $event)">
-    <button type="button" class="expand">e</button>      
-    <span class="label">{{ lefCtrl.leafData.getLabel() }}</span>
+    <span class="icon" ng-show="leaf.hasChildren()" ng-class="leaf.isExpanded() ? 'icon-angle-down':'icon-angle-right'"></span>
+    <span class="label">{{ leaf.getLabel() }}</span>
 
-    <ul class="leaf-children">
-      <tree-leaf 
-        ng-repeat="leaf in lefCtrl.leafs"
+    <ul class="tree-list" ng-show="leaf.isExpanded()">
+      <tree-leaf
+        ng-repeat="childrenLeafs in leaf.getLeafs()"
         trunk="lefCtrl.trunk"
-        leaf-data="leaf"
+        leaf-data="childrenLeafs"
       ></tree-leaf>
-    </div>
-  </ul>
+    </ul>
+  </div>
 </li>

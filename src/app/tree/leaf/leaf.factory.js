@@ -5,22 +5,21 @@ function LeafFactory() {
   /**
    * Leaf Model
    * @typedef {Object} LeafModel
-   * @param {String} label 
-   * @param {String} description 
+   * @param {String} label
+   * @param {String} description
    */
   function Leaf(label, description) {
-    const instance = this;
+    const _leafs = [];
     let _label = label;
     let _description = description;
+    let _expanded = true;
 
     function setLabel(newLabel) {
       _label = newLabel;
-      return instance;
     }
 
     function setDescription(newDescription) {
       _description = newDescription;
-      return instance;
     }
 
     function getLabel() {
@@ -31,12 +30,41 @@ function LeafFactory() {
       return _description;
     }
 
+
+    function isExpanded() {
+      return _expanded;
+    }
+
+    function setExpanded(value) {
+      _expanded = value;
+    }
+
+    function hasChildren() {
+      return _leafs.length;
+    }
+
+    function addLeaf(leaf) {
+      setExpanded(true);
+      _leafs.push(leaf);
+    }
+
+    function getLeafs() {
+      return _leafs;
+    }
+
+
     return {
       getDescription,
       setDescription,
       getLabel,
-      setLabel
+      setLabel,
+      isExpanded,
+      setExpanded,
+      hasChildren,
+      addLeaf,
+      getLeafs
     };
   }
+
   return Leaf;
 }

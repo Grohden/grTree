@@ -28,7 +28,16 @@
     }
   }
 
-  ul li {
-    list-style: none;
+  ul.tree-list{
+    padding-left: 10px;
+
+    li {
+      list-style: none;
+
+      .icon.icon-angle-down{
+        position: absolute;
+        left:0;
+      }
+    }
   }
 }

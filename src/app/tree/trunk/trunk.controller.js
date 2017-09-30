@@ -21,14 +21,11 @@ function TrunkController(Leaf) {
   _self.addLeaf = function (label, description) {
     //const newLeaf = new Leaf(label, description);
     const newLeaf = new Leaf("Text", "Description");
-    const leafArray = (() => {
-      if (_self.selectedLeaf) {
-        return _self.selectedLeaf.leafs;
-      } else {
-        return _self.leafs;
-      }
-    })();
 
-    leafArray.push(newLeaf);
+    if (_self.selectedLeaf){
+      _self.selectedLeaf.leafData.addLeaf(newLeaf);
+    } else {
+      _self.leafs.push(newLeaf);
+    }
   };
 }

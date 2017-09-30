@@ -7,6 +7,9 @@ $container-height: 40px;
 
 .leaf-wrapper {
   position: relative;
-  margin-left: 10px;
+  margin-left: 5px;
 
+  .leaf-container {
+    padding-left: 15px;
+  }
 }
