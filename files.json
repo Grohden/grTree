@@ -7,6 +7,10 @@
     "!build/vendor/*",  
     "!build/vendor/**/*"
   ],
+  "icons":{
+    "source":"./src/app/icons/**/*",
+    "build":"./build/icons/"
+  },
   "styles":{
     "compile":["./src/**/*.scss"],
     "build":"./build/",
