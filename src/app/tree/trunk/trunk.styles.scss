@@ -27,18 +27,4 @@
       right: 0;
     }
   }
-
-  ul.tree-list{
-    padding-left: 0;
-
-    li {
-      list-style: none;
-      border-left: 1px dashed rgba(128, 128, 128, 0.25);
-
-      .icon{
-        position: absolute;
-        left:0;
-      }
-    }
-  }
 }

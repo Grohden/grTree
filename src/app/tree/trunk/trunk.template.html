@@ -1,25 +1,71 @@
-<div class="trunk-container">
-  <div class="trunk-buttons-container">
-    <div class="left-buttons">
-      <button type="button" ng-click="trkCtrl.addLeaf()">
-          Add
-          <span class="icon icon-plus"></span>
-        </button>
-      <button type="button" ng-click="trkCtrl.removeLeaf()">
-          Remove
-          <span class="icon icon-cross"></span>
-      </button>
+<div class="container-fluid">
+
+    <div class="row col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-3">GrTree</h1>
+                <p class="lead">A simple angularJS Tree.</p>
+    
+                <div class="left-buttons">
+                    <button type="button" ng-click="trkCtrl.addLeaf()" class="btn btn-default">
+                        Add
+                        <span class="icon icon-plus"></span>
+                    </button>
+                    <button type="button" ng-click="trkCtrl.removeLeaf()" class="btn btn-default">
+                        Remove
+                        <span class="icon icon-cross"></span>
+                    </button>
+                    <button type="button" class="btn btn-default "
+                            ng-click="trkCtrl.contractAllTree()">
+                        Contract
+                        <span class="icon icon-menu"></span></button>
+                    <button type="button" class="btn btn-default "
+                            ng-click="trkCtrl.expandAllTree()">
+                        Expand
+                        <span class="icon icon-menu2"></span>
+                    </button>
+                </div>
+                <hr>
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" ng-model="currentSearch" placeholder="Search in nodes for...">
+                </div>
+            </div>
+        </div>
     </div>
+    
+    
+    <!-- <div class="jumbotron">
+        <div class="trunk-buttons-container">
+            <div class="left-buttons">
+                <button type="button" ng-click="trkCtrl.addLeaf()" class="btn btn-default">
+                    Add
+                    <span class="icon icon-plus"></span>
+                </button>
+                <button type="button" ng-click="trkCtrl.removeLeaf()" class="btn btn-default">
+                    Remove
+                    <span class="icon icon-cross"></span>
+                </button>
+            </div>
+        
+            <div class="right-buttons">
+                <button type="button" class="icon icon-menu"
+                        ng-click="trkCtrl.expandAllTree()"></button>
+                <button type="button" class="icon icon-menu2"
+                        ng-click="trkCtrl.contractAllTree()"></button>
+            </div>
+        </div>
 
-    <div class="right-buttons">
-      <button type="button" class="icon icon-menu" ng-click="trkCtrl.expandAllTree()"></button>
-      <button type="button" class="icon icon-menu2" ng-click="trkCtrl.contractAllTree()"></button>
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="currentSearch" placeholder="Search for...">
+        </div>
+    </div> -->
+    
+    <div class="row col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6 col-xs-offset-1 col-xs-10">
+        <div class="list-group list-group-root well">
+            <tree-leaf class="leaf-child"
+                       trunk="trkCtrl"
+                       ng-repeat="leaf in trkCtrl.leafs"
+                       leaf-data="leaf"></tree-leaf>
+        </div>
     </div>
-  </div>
-
-  <input class="trunk-search" placeholder="Search here" type="search" ng-model="currentSearch" />
-
-  <ul class="tree-list">
-    <tree-leaf class="leaf-child" ng-repeat="leaf in trkCtrl.leafs" trunk="trkCtrl" leaf-data="leaf"></tree-leaf>
-  </ul>
 </div>

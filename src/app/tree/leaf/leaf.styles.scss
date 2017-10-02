@@ -19,3 +19,18 @@ $container-height: 40px;
   }
 }
 
+.list-group.list-group-root{
+  padding: 0;
+  overflow: hidden;
+
+  .list-group {
+    margin-bottom: 0;
+  }
+  
+  .list-group-item {
+    border-radius: 0;
+    border-width: 1px 0 0 0;
+  }
+  
+}
+

@@ -5,10 +5,12 @@ angular
 
 /***
  * @typedef TrunkEvents {Object}
- * @property {string} SEARCH_EVENT - Emitted on search request
+ * @property {string} OPEN_ALL_LEAFS - Emited when user click on open leafs button
+ * @property {string} CLOSE_ALL_LEAFS - Emited when user click on close all leafs button
  */
 function TrunkEvents(){
     return {
-      SEARCH_EVENT:"SEARCH_EVENT"
-    }
+      CLOSE_ALL_LEAFS:"CLOSE_ALL_LEAFS",
+      OPEN_ALL_LEAFS:"OPEN_ALL_LEAFS"
+    };
   }

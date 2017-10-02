@@ -15,6 +15,7 @@ function LeafController($scope, TrunkEvents) {
 
   const _self = this;
 
+
   /**
    * @member isSearchMatch
    * @type Boolean
@@ -40,19 +41,25 @@ function LeafController($scope, TrunkEvents) {
    * @param {Event} [$event]
    */
   _self.toggleExpanded = function($event){
-      const leaf = _self.leafData;
+    const leaf = _self.leafData;
       
-      leaf.setExpanded(!leaf.isExpanded());
-      
-      if($event){
-        $event.stopPropagation()
-      }
+    leaf.setExpanded(!leaf.isExpanded());
+    
+    if($event){
+      $event.stopPropagation();
+    }
   };
   
   //Scope things
-  $scope.$on(TrunkEvents.SEARCH_EVENT, function(searchString){
-    const label= $scope.leafData.getLabel();
-    _self.isSearchMatch = label.includes(searchString);
+  $scope.$on(TrunkEvents.CLOSE_ALL_LEAFS, function(){
+    const leaf = _self.leafData;
+    leaf.setExpanded(false);
+  });
+
+  //Scope things
+  $scope.$on(TrunkEvents.CLOSE_ALL_LEAFS, function(){
+    const leaf = _self.leafData;
+    leaf.setExpanded(false);
   });
 
 
