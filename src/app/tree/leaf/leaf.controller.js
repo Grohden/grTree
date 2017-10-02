@@ -37,7 +37,7 @@ function LeafController($scope, TrunkEvents) {
   $scope.$on(TrunkEvents.SEARCH_EVENT, function(searchString){
     const label= $scope.leafData.getLabel();
     _self.isSearchMatch = label.includes(searchString);
-  })
+  });
 
 
 }

@@ -27,6 +27,23 @@ const del = require("del");
 //App paths
 const paths = require("./files.json");
 
+
+function deletionHandler(cacheName){
+  return function(event){
+    //Remove a file do cache se deletada.
+      if (event.type === 'deleted') {
+        delete cache.caches[cacheName][event.path];
+        remember.forget(cacheName, event.path);
+      }
+  }
+};
+
+//Some util functions
+function logError(err) {
+  log(error(err.toString()));
+  this.emit('end');
+}
+
 /* Task definitions */
 
 function compileScripts(event) {
@@ -44,11 +61,6 @@ function compileScripts(event) {
     .pipe(remember(paths.scripts.cacheName))
     .pipe(concat('app.js'))
     .pipe(gulp.dest(paths.scripts.build));
-}
-
-function logError(err) {
-  log(error(err.toString()));
-  this.emit('end');
 }
 
 function compileTemplates() {
@@ -84,7 +96,9 @@ function copyViews() {
 //FIXME: handle deletion for cache
 
 function watchScripts() {
-  return gulp.watch(paths.scripts.compile, ['compile:scripts']);
+  return gulp
+      .watch(paths.scripts.compile, ['compile:scripts'])
+      .on('change', deletionHandler(paths.scripts.cacheName));
 }
 
 function watchTemplates() {

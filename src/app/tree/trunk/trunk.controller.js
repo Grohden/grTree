@@ -1,5 +1,6 @@
 angular.module("Tree").controller("TrunkController", [
   "$scope",
+  "$parse",
   "Leaf",
   TrunkController
 ]);
@@ -8,9 +9,13 @@ angular.module("Tree").controller("TrunkController", [
 /**
  *
  * @class TrunkController
+ * @constructor
+ * @param {Object} $scope
+ * @param {Function} $parse
+ * @param {Leaf} Leaf
  * @alias trkCtrl
  */
-function TrunkController($scope, Leaf) {
+function TrunkController($scope, $parse, Leaf) {
   const _self = this;
 
   _self.leafs = [];
@@ -23,16 +28,27 @@ function TrunkController($scope, Leaf) {
    * @memberOf TrunkController
    */
   _self.selectLeaf = function (leafController, $event) {
-    const lastSelected = _self.selectedLeaf.leafData;
-
+    const lastSelected = $parse('selectedLeaf.leafData')(_self);
+    const newSelected = leafController.leafData;
+    
     //unselect previous
     if(lastSelected){
-     lastSelected.setSelected(false);
+      const isToggle = newSelected.isSelected() && lastSelected.isSelected();
+      lastSelected.setSelected(false);
+  
+      if(isToggle){
+        newSelected.setSelected(false);
+        _self.selectedLeaf = undefined;
+      } else {
+        newSelected.setSelected(true);
+        _self.selectedLeaf = leafController;
+      }
+    } else {
+      newSelected.setSelected(true);
+      _self.selectedLeaf = leafController;
     }
-
-    leafController.leafData.setSelected(true);
-    _self.selectedLeaf = leafController;
-
+    
+    
     if ($event) {
       $event.stopPropagation();
     }
