@@ -16,7 +16,7 @@ function LeafFactory() {
     const _leafs = [];
     let label = initialLabel;
     let description = initialDescription;
-    let expanded = true;
+    let expanded = false;
     let selected = false;
 
     /**

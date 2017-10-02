@@ -32,7 +32,23 @@ function LeafController($scope, TrunkEvents) {
    * @type Array
    */
   _self.editData = {};
-
+  
+  /**
+   * Toggle the leaf children
+   * @member editData
+   * @function
+   * @param {Event} [$event]
+   */
+  _self.toggleExpanded = function($event){
+      const leaf = _self.leafData;
+      
+      leaf.setExpanded(!leaf.isExpanded());
+      
+      if($event){
+        $event.stopPropagation()
+      }
+  };
+  
   //Scope things
   $scope.$on(TrunkEvents.SEARCH_EVENT, function(searchString){
     const label= $scope.leafData.getLabel();

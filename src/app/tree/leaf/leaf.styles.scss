@@ -10,5 +10,12 @@ $container-height: 40px;
 
   .leaf-container {
     padding-left: 15px;
+    cursor:pointer;
+    
+    .leaf-infos.selected{
+      max-width: 200px;
+      background: yellow;
+    }
   }
 }
+
