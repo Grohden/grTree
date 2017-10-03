@@ -1,3 +1,4 @@
+/*global angular*/
 angular
   .module('Tree')
   .factory('Leaf', [LeafFactory]);
@@ -16,6 +17,8 @@ function LeafFactory() {
     const _leafs = [];
     let label = initialLabel;
     let description = initialDescription;
+    let parent;
+    let index = false;
     let expanded = false;
     let selected = false;
 
@@ -69,6 +72,40 @@ function LeafFactory() {
     };
 
     /**
+     * @function getParent
+     * @name Leaf#getParent
+     * @return Leaf
+     */
+    _self.getParent = function () {
+      return parent;
+    };
+
+    /**
+     * @function setParent
+     * @name Leaf#setParent
+     * @param {Leaf} newParent
+     */
+    _self.setParent = function (newParent) {
+      parent = newParent;
+    };
+
+    /**
+     * @function getIndex
+     * @name Leaf#getIndex
+     */
+    _self.getIndex = function () {
+      return index;
+    };
+
+    /**
+     * @function setIndex
+     * @name Leaf#setIndex
+     */
+    _self.setIndex = function (newIndex) {
+      index = newIndex;
+    };
+
+      /**
      * @function isExpanded
      * @name Leaf#isExpanded
      */
@@ -95,15 +132,28 @@ function LeafFactory() {
     /**
      * @function addLeaf
      * @name Leaf#addLeaf
+     * @param {Leaf} leaf
      */
     _self.addLeaf = function (leaf) {
+      leaf.setParent(_self);
+      leaf.setIndex(_self.getLeafs().length);
+
       _self.setExpanded(true);
       _leafs.push(leaf);
     };
 
     /**
+     * @function removeFromParent
+     * @name Leaf#removeFromParent
+     */
+    _self.removeFromParent = function () {
+      _self.getParent().getLeafs().splice(_self.getIndex(), 1);
+    };
+
+    /**
      * @function getLeafs
      * @name Leaf#getLeafs
+     * @return Array.<Leaf>
      */
     _self.getLeafs = function () {
       return _leafs;

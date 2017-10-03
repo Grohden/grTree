@@ -18,8 +18,7 @@ Then you can run `npm start` and start to develop :D
   * [x] Setup scss
   * [x] Setup browsersync
 * [ ] Tree itself, trunk and leafs
-  * [x] Add leaf
+  * [ ] Add leaf
   * [x] Select leaf
-  * [ ] Remove leaf
-  * [ ] Edit a leaf
+  * [x] Remove leaf
 * [ ] Search in nodes and its children

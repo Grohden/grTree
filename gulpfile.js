@@ -35,8 +35,8 @@ function deletionHandler(cacheName){
         delete cache.caches[cacheName][event.path];
         remember.forget(cacheName, event.path);
       }
-  }
-};
+  };
+}
 
 //Some util functions
 function logError(err) {
@@ -140,14 +140,14 @@ gulp.task("compile", [
 
 gulp.task("watch", [
   "compile",
-  "browser-sync",
   "watch:scripts",
   "watch:sass",
   "watch:templates",
-  "watch:views"
+  "watch:views",
+  "browser-sync"
 ]);
 
-gulp.task('browser-sync', initBrowserSync)
+gulp.task('browser-sync', initBrowserSync);
 
 //Compiles
 gulp.task("compile:scripts", compileScripts);

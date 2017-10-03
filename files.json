@@ -14,15 +14,15 @@
   "styles":{
     "compile":["./src/**/*.scss"],
     "build":"./build/",
-    "cacheName":"styles"
+    "cacheName": "styles"
   },
   "templates": {
     "compile": ["!./src/app/views/**/*.html","!./src/app/views/*.html","./src/app/**/*.html"],
-    "build":"./build/templates/"
+    "build": "./build/templates/"
   },
   "views":{
     "compile": ["./src/app/views/**/*.html","./src/app/views/*.html"],
-    "build":"./build/"
+    "build": "./build/"
   },
   "scripts": {
     "cacheName": "scripts",

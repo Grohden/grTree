@@ -15,7 +15,6 @@ function LeafController($scope, TrunkEvents) {
 
   const _self = this;
 
-
   /**
    * @member isSearchMatch
    * @type Boolean
@@ -56,8 +55,7 @@ function LeafController($scope, TrunkEvents) {
     leaf.setExpanded(false);
   });
 
-  //Scope things
-  $scope.$on(TrunkEvents.CLOSE_ALL_LEAFS, function(){
+  $scope.$on(TrunkEvents.OPEN_ALL_LEAFS, function(){
     const leaf = _self.leafData;
     leaf.setExpanded(false);
   });

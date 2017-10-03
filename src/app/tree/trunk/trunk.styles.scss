@@ -1,30 +1,6 @@
 @import "../../_global.variables";
 
 
-.trunk-container {
-  border: 1px solid red;
-  min-width: 300px;
-  padding: 20px 5px;
-
-  .trunk-search {
-    display: block;
-    width: 100%;
-  }
-
-  .trunk-buttons-container {
-    position: relative;
-    display: block;
-    height: 50px;
-
-    .left-buttons, .right-buttons{
-      position: absolute
-    }
-
-    .left-buttons {
-      left: 0;
-    }
-    .right-buttons{
-      right: 0;
-    }
-  }
+.trunk-container{
+  height:100%;
 }

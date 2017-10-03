@@ -5,32 +5,4 @@ $icon-btn-width: 20px;
 $container-height: 40px;
 
 
-.leaf-wrapper {
-  position: relative;
-
-  .leaf-container {
-    padding-left: 15px;
-    cursor:pointer;
-    
-    .leaf-infos.selected{
-      max-width: 200px;
-      background: yellow;
-    }
-  }
-}
-
-.list-group.list-group-root{
-  padding: 0;
-  overflow: hidden;
-
-  .list-group {
-    margin-bottom: 0;
-  }
-  
-  .list-group-item {
-    border-radius: 0;
-    border-width: 1px 0 0 0;
-  }
-  
-}
 

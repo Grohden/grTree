@@ -18,9 +18,9 @@ angular.module("Tree").controller("TrunkController", [
 function TrunkController($scope, $parse, Leaf) {
   const _self = this;
 
-  _self.leafs = [];
+  _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf");
   _self.currentSearch = "";
-  _self.selectedLeaf = false;
+  _self.selectedController = false;
 
   //Controller exposed functions
 
@@ -28,24 +28,25 @@ function TrunkController($scope, $parse, Leaf) {
    * @memberOf TrunkController
    */
   _self.selectLeaf = function (leafController, $event) {
-    const lastSelected = $parse('selectedLeaf.leafData')(_self);
+    const lastSelected = $parse('selectedController.leafData')(_self);
     const newSelected = leafController.leafData;
     
     //unselect previous
     if(lastSelected){
       const isToggle = newSelected.isSelected() && lastSelected.isSelected();
-      lastSelected.setSelected(false);
-  
+
       if(isToggle){
-        newSelected.setSelected(false);
-        _self.selectedLeaf = undefined;
+        _self.selectedController = false;
       } else {
-        newSelected.setSelected(true);
-        _self.selectedLeaf = leafController;
+        _self.selectedController = leafController;
       }
+
+      lastSelected.setSelected(false);
+      newSelected.setSelected(!isToggle);
+
     } else {
       newSelected.setSelected(true);
-      _self.selectedLeaf = leafController;
+      _self.selectedController = leafController;
     }
     
     
@@ -54,6 +55,12 @@ function TrunkController($scope, $parse, Leaf) {
     }
   };
 
+  _self.removeLeaf = function(){
+    _self.selectedController.leafData.removeFromParent();
+    _self.selectedController = false;
+  };
+
+
   /**
    * @memberOf TrunkController
    */
@@ -61,10 +68,13 @@ function TrunkController($scope, $parse, Leaf) {
     //const newLeaf = new Leaf(label, description);
     const newLeaf = new Leaf("Text", "Description");
 
-    if (_self.selectedLeaf){
-      _self.selectedLeaf.leafData.addLeaf(newLeaf);
+    let leafData;
+    if (_self.selectedController){
+      leafData = _self.selectedController.leafData;
     } else {
-      _self.leafs.push(newLeaf);
+      leafData  = _self.root;
     }
+
+    leafData.addLeaf(newLeaf);
   };
 }

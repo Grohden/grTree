@@ -1,3 +1,13 @@
+/**
+ * @ngdoc component
+ * @name treeLeaf
+ * @module Tree
+ *
+ * @description
+ * Main tree component, it has the search and buttons, and inside, the leafs
+ *
+ */
+
 angular
   .module("Tree")
   .component("treeLeaf", {
@@ -11,6 +21,5 @@ angular
     scope: {},
     bindings: {
       leafData: "=",
-      trunk: "="
     }
   });

@@ -1,25 +1,25 @@
-<div class="leaf-wrapper" ng-init="leaf = leafCtrl.leafData;" ng-if="leafCtrl">
+<li class="leaf-wrapper" ng-init="leaf = leafCtrl.leafData; trunk = leafCtrl.parent" ng-if="leafCtrl">
 
   <div class="leaf-container">
     <div class="leaf-infos"
-         ng-click="leafCtrl.trunk.selectLeaf(leafCtrl, $event)"
+         ng-click="trunk.selectLeaf(leafCtrl, $event)"
          ng-class="{'selected': leafCtrl.leafData.isSelected()}">
       
-      <span class="icon"
+      <span class="glyphicon "
             ng-click="leafCtrl.toggleExpanded($event);"
             ng-show="leaf.hasChildren()"
-            ng-class="leaf.isExpanded() ? 'icon-angle-down':'icon-angle-right'">
+            ng-class="leaf.isExpanded() ? 'glyphicon-menu-down':'glyphicon-menu-right'">
       </span>
 
       <span class="title">{{ leaf.getLabel() +' - '+ leaf.isSelected() }}</span>
     </div>
 
-    <div class="tree-list" ng-show="leaf.isExpanded()">
+    <ul class="tree-list" ng-show="leaf.isExpanded()">
       <tree-leaf
         ng-repeat="childrenLeafs in leaf.getLeafs()"
-        trunk="leafCtrl.trunk"
         leaf-data="childrenLeafs"
+        index="$index"
       ></tree-leaf>
-    </div>
+    </ul>
   </div>
-</div>
+</li>
