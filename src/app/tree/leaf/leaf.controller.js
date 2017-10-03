@@ -60,7 +60,7 @@
         
         $scope.$on(TrunkEvents.OPEN_ALL_LEAFS, function () {
             const leaf = _self.leafData;
-            leaf.setExpanded(false);
+            leaf.setExpanded(true);
         });
         
     }

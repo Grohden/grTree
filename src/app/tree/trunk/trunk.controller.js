@@ -74,14 +74,14 @@
         /**
          * @memberOf TrunkController
          */
-        _self.contractAllTree = function () {
+        _self.closeAllTree = function () {
             $scope.$broadcast(TrunkEvents.CLOSE_ALL_LEAFS);
         };
     
         /**
          * @memberOf TrunkController
          */
-        _self.expandAllTree = function () {
+        _self.openAllTree = function () {
             $scope.$broadcast(TrunkEvents.OPEN_ALL_LEAFS);
         };
     

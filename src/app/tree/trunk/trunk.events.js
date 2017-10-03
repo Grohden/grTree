@@ -2,7 +2,7 @@
     "use strict";
     angular
         .module("Tree")
-        .constant("TrunkEvents", TrunkEvents);
+        .constant("TrunkEvents", TrunkEvents());
     
     /***
      * @typedef TrunkEvents {Object}
