@@ -1,12 +1,16 @@
 (function () {
     "use strict";
     
-    angular.module("Tree").controller("TrunkController", [
-        "$scope",
-        "$parse",
-        "Leaf",
-        TrunkController
-    ]);
+    /*global angular*/
+    angular
+        .module("Tree")
+        .controller("TrunkController", [
+            "$scope",
+            "$parse",
+            "Leaf",
+            "TrunkEvents",
+            TrunkController
+        ]);
     
     /**
      *
@@ -15,13 +19,16 @@
      * @param {Object} $scope
      * @param {Function} $parse
      * @param {Leaf} Leaf
+     * @param {TrunkEvents} TrunkEvents
      * @alias trkCtrl
      */
-    function TrunkController($scope, $parse, Leaf) {
+    function TrunkController($scope, $parse, Leaf, TrunkEvents) {
         const _self = this;
         
         _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf");
         _self.currentSearch = "";
+        _self.newLeaf = {};
+        
         _self.selectedController = false;
         
         //Controller exposed functions
@@ -35,8 +42,7 @@
             
             //unselect previous
             if (lastSelected) {
-                const isToggle = newSelected.isSelected()
-                    && lastSelected.isSelected();
+                const isToggle = newSelected.isSelected() && lastSelected.isSelected();
                 
                 if (isToggle) {
                     _self.selectedController = false;
@@ -56,7 +62,10 @@
                 $event.stopPropagation();
             }
         };
-        
+    
+        /**
+         * @memberOf TrunkController
+         */
         _self.removeLeaf = function () {
             _self.selectedController.leafData.removeFromParent();
             _self.selectedController = false;
@@ -65,9 +74,30 @@
         /**
          * @memberOf TrunkController
          */
-        _self.addLeaf = function (label, description) {
-            //const newLeaf = new Leaf(label, description);
-            const newLeaf = new Leaf("Text", "Description");
+        _self.contractAllTree = function () {
+            $scope.$broadcast(TrunkEvents.CLOSE_ALL_LEAFS);
+        };
+    
+        /**
+         * @memberOf TrunkController
+         */
+        _self.expandAllTree = function () {
+            $scope.$broadcast(TrunkEvents.OPEN_ALL_LEAFS);
+        };
+    
+        _self.newLeafIsInvalid = function () {
+            return !(_self.newLeaf.label && _self.newLeaf.description);
+        };
+        /**
+         * @memberOf TrunkController
+         */
+        _self.addLeaf = function () {
+            if (_self.newLeafIsInvalid()) {
+                return false;
+            }
+        
+            const newLeaf = new Leaf(_self.newLeaf.label,
+                _self.newLeaf.description);
             
             let leafData;
             if (_self.selectedController) {
@@ -77,6 +107,9 @@
             }
             
             leafData.addLeaf(newLeaf);
+        
+            _self.newLeaf = {};
+            return true;
         };
     }
 }());

@@ -18,8 +18,8 @@ Then you can run `npm start` and start to develop :D
   * [x] Setup scss
   * [x] Setup browsersync
 * [ ] Tree itself, trunk and leafs
-  * [ ] Add leaf
+  * [x] Add leaf
   * [x] Select leaf
   * [x] Remove leaf
 * [ ] Search in nodes and its children
-* [ ] Add editor config
+* [x] Add editor config
