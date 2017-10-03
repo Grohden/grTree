@@ -1,8 +1,6 @@
 const gulp = require("gulp");
 const cache = require("gulp-cached");
 const remember = require("gulp-remember");
-const header = require("gulp-header");
-const footer = require("gulp-footer");
 
 //Utils
 const browserSync = require('browser-sync').create();
@@ -55,9 +53,7 @@ function compileScripts(event) {
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(babel())
-    .on("error", logError)
-    .pipe(header("(function(){\n"))
-    .pipe(footer("\n}());"))
+      .on("error", logError)
     .pipe(remember(paths.scripts.cacheName))
     .pipe(concat('app.js'))
     .pipe(gulp.dest(paths.scripts.build));

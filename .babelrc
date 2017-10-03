@@ -3,11 +3,6 @@
     "env"
   ],
   "plugins": [
-    [
-      "transform-strict-mode",
-      {
-        "strict": false
-      }
-    ]
+    "transform-remove-strict-mode"
   ]
 }
