@@ -73,38 +73,21 @@
             
             if (searchString) {
                 _self.isSearch = true;
-                _self.search = getIfMatch(searchString, _self.root);
-                console.log(_self.search);
+                _self.search = recursiveFind(_self.root);
             } else {
                 _self.isSearch = false;
             }
-            
-            
+    
+            function recursiveFind(leaf){
+                const leafs = leaf.leafs;
+                return leafs.length
+                    ? leafs.filter(child => child.label.includes(searchString) || recursiveFind(child).length)
+                    : leaf.label.includes(searchString);
+            }
         };
         
-        /**
-         * @param {String} search
-         * @param {Leaf} leaf
-         * */
-        function getIfMatch(search, leaf) {
-            const leafs = leaf.leafs;
-            
-            if (!leaf.label.includes(search)) {
-                if (leafs.length) {
-                    return leafs.reduce((acc, child) => {
-                        let result = getIfMatch(search, child);
-                        if (result) {
-                            acc.push(Object.assign({leafs: result}, leaf));
-                        }
-                        return acc;
-                    }, []);
-                } else {
-                    return false;
-                }
-            } else {
-                return Object.assign({searchResult: true}, leaf);
-            }
-        }
+        
+        
         
         /**
          * @memberOf TrunkController
