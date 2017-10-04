@@ -114,8 +114,9 @@ function initBrowserSync() {
 }
 
 //Clear all folders except the vendor ones (which are created by bower)
-function clearBuild() {
-  return del(paths.clean);
+function clearBuild( callback) {
+  del.sync(paths.clean);
+  callback();
 }
 
 /* Tasks */

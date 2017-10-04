@@ -32,7 +32,7 @@
                         <span class="hidden-xs">Expand</span>
                     </button>
                 </div>
-                <input type="text" class="form-control" placeholder="Search for...">
+                <input type="text" class="form-control" ng-keyup="trkCtrl.doSearch($event)" placeholder="Search for...">
             </div>
         </div>
         <!-- Proper leaf list -->
@@ -56,7 +56,7 @@
 
             <ul class="list-group" ng-show="trkCtrl.root.hasChildren()">
                 <tree-leaf class="leaf-child"
-                           ng-repeat="leaf in trkCtrl.root.getLeafs()"
+                           ng-repeat="leaf in trkCtrl.root.leafs"
                            leaf-data="leaf"
                            index="$index"
                            ></tree-leaf>

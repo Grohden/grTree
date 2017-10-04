@@ -25,9 +25,10 @@
     function TrunkController($scope, $parse, Leaf, TrunkEvents) {
         const _self = this;
         
-        _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf");
         _self.currentSearch = "";
-        _self.newLeaf = {};
+        
+        _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf");
+        _self.newLeaf = new Leaf();
         
         _self.selectedController = false;
         
@@ -42,7 +43,7 @@
             
             //unselect previous
             if (lastSelected) {
-                const isToggle = newSelected.isSelected() && lastSelected.isSelected();
+                const isToggle = newSelected.selected && lastSelected.selected;
                 
                 if (isToggle) {
                     _self.selectedController = false;
@@ -50,11 +51,11 @@
                     _self.selectedController = leafController;
                 }
                 
-                lastSelected.setSelected(false);
-                newSelected.setSelected(!isToggle);
+                lastSelected.selected = false;
+                newSelected.selected = !isToggle;
                 
             } else {
-                newSelected.setSelected(true);
+                newSelected.selected = true;
                 _self.selectedController = leafController;
             }
             
@@ -62,7 +63,49 @@
                 $event.stopPropagation();
             }
         };
-    
+        
+        /**
+         * @memberOf TrunkController
+         * @param {Event} event
+         */
+        _self.doSearch = function (event) {
+            const searchString = event.currentTarget.value;
+            
+            if (searchString) {
+                _self.isSearch = true;
+                _self.search = getIfMatch(searchString, _self.root);
+                console.log(_self.search);
+            } else {
+                _self.isSearch = false;
+            }
+            
+            
+        };
+        
+        /**
+         * @param {String} search
+         * @param {Leaf} leaf
+         * */
+        function getIfMatch(search, leaf) {
+            const leafs = leaf.leafs;
+            
+            if (!leaf.label.includes(search)) {
+                if (leafs.length) {
+                    return leafs.reduce((acc, child) => {
+                        let result = getIfMatch(search, child);
+                        if (result) {
+                            acc.push(Object.assign({leafs: result}, leaf));
+                        }
+                        return acc;
+                    }, []);
+                } else {
+                    return false;
+                }
+            } else {
+                return Object.assign({searchResult: true}, leaf);
+            }
+        }
+        
         /**
          * @memberOf TrunkController
          */
@@ -77,14 +120,14 @@
         _self.closeAllTree = function () {
             $scope.$broadcast(TrunkEvents.CLOSE_ALL_LEAFS);
         };
-    
+        
         /**
          * @memberOf TrunkController
          */
         _self.openAllTree = function () {
             $scope.$broadcast(TrunkEvents.OPEN_ALL_LEAFS);
         };
-    
+        
         _self.newLeafIsInvalid = function () {
             return !(_self.newLeaf.label && _self.newLeaf.description);
         };
@@ -95,9 +138,6 @@
             if (_self.newLeafIsInvalid()) {
                 return false;
             }
-        
-            const newLeaf = new Leaf(_self.newLeaf.label,
-                _self.newLeaf.description);
             
             let leafData;
             if (_self.selectedController) {
@@ -106,9 +146,9 @@
                 leafData = _self.root;
             }
             
-            leafData.addLeaf(newLeaf);
-        
-            _self.newLeaf = {};
+            leafData.addLeaf(_self.newLeaf);
+            
+            _self.newLeaf = new Leaf();
             return true;
         };
     }

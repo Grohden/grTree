@@ -15,154 +15,87 @@
          * @param {String} initialLabel
          * @param {String} initialDescription
          */
-        function Leaf(initialLabel, initialDescription) {
-            const _self = this;
-            const _leafs = [];
-            let label = initialLabel;
-            let description = initialDescription;
-            let parent;
-            let index = false;
-            let expanded = false;
-            let selected = false;
+        class Leaf {
             
-            /**
-             * @function setSelected
-             * @name Leaf#setSelected
-             */
-            _self.setSelected = function (value) {
-                selected = value;
-            };
+            constructor(label, description){
+                this._label = label;
+                this._description = description;
+                this._leafs = [];
+                this._expanded = true;
+                this._selected = false;
+            }
             
-            /**
-             * @function isSelected
-             * @name Leaf#isSelected
-             */
-            _self.isSelected = function () {
-                return selected;
-            };
+            get description() {
+                return this._description;
+            }
             
-            /**
-             * @function setLabel
-             * @name Leaf#setLabel
-             */
-            _self.setLabel = function (newLabel) {
-                label = newLabel;
-            };
+            set description(description) {
+                this._description = description;
+            }
             
-            /**
-             * @function setDescription
-             * @name Leaf#setDescription
-             */
-            _self.setDescription = function (newDescription) {
-                description = newDescription;
-            };
+            get label() {
+                return this._label;
+            }
             
-            /**
-             * @function getLabel
-             * @name Leaf#getLabel
-             * @return {string}
-             */
-            _self.getLabel = function () {
-                return label;
-            };
+            set label(label) {
+                this._label = label;
+            }
             
-            /**
-             * @function getDescription
-             * @name Leaf#getDescription
-             */
-            _self.getDescription = function () {
-                return description;
-            };
+            get leafs() {
+                return this._leafs;
+            }
             
-            /**
-             * @function getParent
-             * @name Leaf#getParent
-             * @return Leaf
-             */
-            _self.getParent = function () {
-                return parent;
-            };
+            set leafs(leafs) {
+                this._leafs = leafs;
+            }
             
-            /**
-             * @function setParent
-             * @name Leaf#setParent
-             * @param {Leaf} newParent
-             */
-            _self.setParent = function (newParent) {
-                parent = newParent;
-            };
+            get selected() {
+                return this._selected;
+            }
             
-            /**
-             * @function getIndex
-             * @name Leaf#getIndex
-             */
-            _self.getIndex = function () {
-                return index;
-            };
+            set selected(selected) {
+                this._selected = selected;
+            }
             
-            /**
-             * @function setIndex
-             * @name Leaf#setIndex
-             */
-            _self.setIndex = function (newIndex) {
-                index = newIndex;
-            };
+            get expanded() {
+                return this._expanded;
+            }
             
-            /**
-             * @function isExpanded
-             * @name Leaf#isExpanded
-             */
-            _self.isExpanded = function () {
-                return expanded;
-            };
+            set expanded(expanded) {
+                this._expanded = expanded;
+            }
             
-            /**
-             * @function setExpanded
-             * @name Leaf#setExpanded
-             */
-            _self.setExpanded = function (value) {
-                expanded = value;
-            };
+            get index() {
+                return this._index;
+            }
             
-            /**
-             * @function hasChildren
-             * @name Leaf#hasChildren
-             */
-            _self.hasChildren = function () {
-                return _leafs.length;
-            };
+            set index(index) {
+                this._index = index;
+            }
             
-            /**
-             * @function addLeaf
-             * @name Leaf#addLeaf
-             * @param {Leaf} leaf
-             */
-            _self.addLeaf = function (leaf) {
-                leaf.setParent(_self);
-                leaf.setIndex(_self.getLeafs().length);
-                
-                _self.setExpanded(true);
-                _leafs.push(leaf);
-            };
+            get parent() {
+                return this._parent;
+            }
             
-            /**
-             * @function removeFromParent
-             * @name Leaf#removeFromParent
-             */
-            _self.removeFromParent = function () {
-                _self.getParent().getLeafs().splice(_self.getIndex(), 1);
-            };
+            set parent(parent) {
+                this._parent = parent;
+            }
             
-            /**
-             * @function getLeafs
-             * @name Leaf#getLeafs
-             * @return Array.<Leaf>
-             */
-            _self.getLeafs = function () {
-                return _leafs;
-            };
+            hasChildren() {
+                return !!this.leafs.length;
+            }
             
-            return _self;
+            removeFromParent() {
+                return this.parent.leafs.splice(_self.index, 1);
+            }
+            
+            addLeaf(leaf) {
+                leaf.parent = this;
+                leaf.index = this._leafs.length;
+    
+                this.expanded = true;
+                this.leafs.push(leaf);
+            }
         }
         
         return Leaf;

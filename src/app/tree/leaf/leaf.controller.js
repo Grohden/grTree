@@ -45,7 +45,7 @@
         _self.toggleExpanded = function ($event) {
             const leaf = _self.leafData;
             
-            leaf.setExpanded(!leaf.isExpanded());
+            leaf.expanded = !leaf.expanded;
             
             if ($event) {
                 $event.stopPropagation();
@@ -55,12 +55,12 @@
         //Scope things
         $scope.$on(TrunkEvents.CLOSE_ALL_LEAFS, function () {
             const leaf = _self.leafData;
-            leaf.setExpanded(false);
+            leaf.expanded = false;
         });
         
         $scope.$on(TrunkEvents.OPEN_ALL_LEAFS, function () {
             const leaf = _self.leafData;
-            leaf.setExpanded(true);
+            leaf.expanded = true;
         });
         
     }
