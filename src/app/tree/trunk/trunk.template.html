@@ -1,66 +1,77 @@
 <div class="trunk-container container-fluid col-lg-offset-2 col-md-offset-3 col-lg-8 col-md-6 col-xs-offset-1 col-xs-10">
     <div>
         <div class="page-header">
-
             <h1 class="display-3">GrTree</h1>
             <p class="lead">A simple angularJS Tree.</p>
         </div>
     </div>
-
     <div class="panel panel-default ">
         <!-- Leaf search -->
         <div class="panel-heading">
-            <div class="input-group">
-                <div class="input-group-btn">
-                    <button type="button" ng-click="trkCtrl.removeLeaf()" class="btn btn-default" ng-class="{'disabled': !trkCtrl.selectedController}">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                        <span class="hidden-xs">Remove</span>
-                    </button>
-                    <button type="button" ng-click="trkCtrl.addLeaf()" class="btn btn-default"
-                            ng-class="{'disabled': trkCtrl.newLeafIsInvalid()}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        <span class="hidden-xs">Add</span>
-                    </button>
-                    <button type="button" class="btn btn-default"
-                            ng-click="trkCtrl.closeAllTree()">
-                        <span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>
-                        <span class="hidden-xs">Contract</span>
-                    </button>
-                    <button type="button" class="btn btn-default "
-                            ng-click="trkCtrl.openAllTree()">
-                        <span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
-                        <span class="hidden-xs">Expand</span>
-                    </button>
+            <div class="row">
+                <div class="col-sm-10 col-xs-9 col-md-8 container">
+                    <div class="input-group col-sm-10 col-xs-10 col-md-10">
+                        <input type="text" class="form-control" ng-keyup="trkCtrl.doSearch($event)" placeholder="Search for...">
+                    </div>
                 </div>
-                <input type="text" class="form-control" ng-keyup="trkCtrl.doSearch($event)" placeholder="Search for...">
+                <div class="col-sm-2 col-xs-2 col-md-4 container">
+                    <div class="input-group col-sm-12 col-xs-12 col-md-12">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default"
+                                ng-click="trkCtrl.closeAllTree()">
+                            <span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>
+                            <span class="hidden-xs">Contract</span>
+                            </button>
+                            <button type="button" class="btn btn-default "
+                                ng-click="trkCtrl.openAllTree()">
+                            <span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
+                            <span class="hidden-xs">Expand</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Proper leaf list -->
         <div class="panel-body leafs-panel" >
+            <h4 ng-hide="trkCtrl.root.hasChildren()">You can add a new leaf with that plus button above :D</h4>
+            <ul class="list-group" ng-show="trkCtrl.root.hasChildren()">
+                <tree-leaf class="leaf-child"
+                    ng-repeat="leaf in trkCtrl.root.leafs"
+                    leaf-data="leaf"
+                    index="$index"
+                    ></tree-leaf>
+            </ul>
+            <hr/>
             <form class="form">
                 <div class="form-group">
                     <label for="leafName">Name</label>
                     <input type="text" ng-model="trkCtrl.newLeaf.label" class="form-control"
-                           id="leafName" placeholder="Leaf name here">
+                        id="leafName" placeholder="Leaf name here">
                 </div>
                 <div class="form-group">
                     <label for="leafDescription">Description</label>
                     <input type="text" ng-model="trkCtrl.newLeaf.description" class="form-control"
-                           id="leafDescription" placeholder="Leaf description here">
+                        id="leafDescription" placeholder="Leaf description here">
                 </div>
             </form>
-
-            <hr/>
-
-            <h4 ng-hide="trkCtrl.root.hasChildren()">You can add a new leaf with that plus button above :D</h4>
-
-            <ul class="list-group" ng-show="trkCtrl.root.hasChildren()">
-                <tree-leaf class="leaf-child"
-                           ng-repeat="leaf in trkCtrl.root.leafs"
-                           leaf-data="leaf"
-                           index="$index"
-                           ></tree-leaf>
-            </ul>
+        </div>
+        <div class="panel-footer">
+            <div class="row">
+                <div class="input-group-btn">
+                    <div class="pull-right container">
+                        <button type="button" ng-click="trkCtrl.removeLeaf()" class="btn btn-default" ng-class="{'disabled': !trkCtrl.selectedController}">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <span>Remove</span>
+                        </button>
+                        <button type="button" ng-click="trkCtrl.addLeaf()" class="btn btn-default"
+                            ng-class="{'disabled': trkCtrl.newLeafIsInvalid()}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span>Add</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
