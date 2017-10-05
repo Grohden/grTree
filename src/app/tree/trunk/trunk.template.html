@@ -9,7 +9,7 @@
         <!-- Leaf search -->
         <div class="panel-heading">
             <div class="row">
-                <div class="col-sm-10 col-xs-9 col-md-8 container">
+                <div class="col-sm-10 col-xs-8 col-md-8 container">
                     <div class="input-group col-sm-10 col-xs-10 col-md-10">
                         <input type="text" class="form-control" ng-keyup="trkCtrl.doSearch($event)" placeholder="Search for...">
                     </div>
@@ -37,7 +37,7 @@
             <h4 ng-hide="trkCtrl.root.hasChildren()">You can add a new leaf with that plus button above :D</h4>
             <ul class="list-group" ng-show="trkCtrl.root.hasChildren()">
                 <tree-leaf class="leaf-child"
-                    ng-repeat="leaf in trkCtrl.root.leafs"
+                    ng-repeat="leaf in trkCtrl.allLeafsPointer"
                     leaf-data="leaf"
                     index="$index"
                     ></tree-leaf>

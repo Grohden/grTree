@@ -21,5 +21,5 @@ Then you can run `npm start` and start to develop :D
   * [x] Add leaf
   * [x] Select leaf
   * [x] Remove leaf
-* [ ] Search in nodes and its children
+* [x] Search in nodes and its children
 * [x] Add editor config
