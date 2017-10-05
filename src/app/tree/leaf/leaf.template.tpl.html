@@ -4,10 +4,10 @@
     <div class="leaf-infos"
          ng-click="trunk.selectLeaf(leafCtrl, $event)">
       
-      <span class="glyphicon "
+      <span class="glyphicon glyphicon-menu-right"
             ng-click="leafCtrl.toggleExpanded($event);"
             ng-show="leaf.hasChildren()"
-            ng-class="leaf.isExpanded() ? 'glyphicon-menu-down':'glyphicon-menu-right'">
+            ng-class="{'expanded': leaf.expanded}">
       </span>
 
       <span class="title"

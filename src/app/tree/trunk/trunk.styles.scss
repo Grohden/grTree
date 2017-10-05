@@ -3,8 +3,16 @@
 
 .trunk-container{
   height:100%;
-
-  ul{
+  
+  ul {
     list-style: none;
+    
+    li {
+      margin: 10px 2px;
+    }
+    
+    &.trunk-ul {
+      padding-left: 1px;
+    }
   }
 }

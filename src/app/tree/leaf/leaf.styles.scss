@@ -17,5 +17,13 @@ $container-height: 40px;
             background: rgba(0,0,0,0.2);
         }
     }
+    
+    .glyphicon-menu-right{
+        transition: transform .4s;
+        
+        &.expanded{
+            transform: rotate(90deg);
+        }
+    }
 }
 
