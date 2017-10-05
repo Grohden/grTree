@@ -4,5 +4,18 @@ $icon-btn-height: $default-button-height;
 $icon-btn-width: 20px;
 $container-height: 40px;
 
-
+.leaf-infos {
+    cursor: pointer;
+    width: auto;
+    
+    .title {
+        padding: 3px 5px;
+        transition: background .4s;
+        border-radius: 4px;
+        
+        &.selected {
+            background: rgba(0,0,0,0.2);
+        }
+    }
+}
 

@@ -9,12 +9,12 @@
         <!-- Leaf search -->
         <div class="panel-heading">
             <div class="row">
-                <div class="col-sm-10 col-xs-8 col-md-8 container">
+                <div class="col-sm-8 col-xs-10 col-md-7 col-lg-9 container">
                     <div class="input-group col-sm-10 col-xs-10 col-md-10">
                         <input type="text" class="form-control" ng-keyup="trkCtrl.doSearch($event)" placeholder="Search for...">
                     </div>
                 </div>
-                <div class="col-sm-2 col-xs-2 col-md-4 container">
+                <div class="col-sm-4 col-xs-2 col-md-5  col-lg-3 container">
                     <div class="input-group col-sm-12 col-xs-12 col-md-12">
                         <div class="input-group-btn">
                             <button type="button" class="btn btn-default"
@@ -35,7 +35,7 @@
         <!-- Proper leaf list -->
         <div class="panel-body leafs-panel" >
             <h4 ng-hide="trkCtrl.root.hasChildren()">You can add a new leaf with that plus button above :D</h4>
-            <ul class="list-group" ng-show="trkCtrl.root.hasChildren()">
+            <ul class="" ng-show="trkCtrl.root.hasChildren()">
                 <tree-leaf class="leaf-child"
                     ng-repeat="leaf in trkCtrl.allLeafsPointer"
                     leaf-data="leaf"
@@ -59,7 +59,7 @@
         <div class="panel-footer">
             <div class="row">
                 <div class="input-group-btn">
-                    <div class="pull-right container">
+                    <div class="container col-xs-offset-5 col-xs-7 col-sm-offset-8 col-sm-4 col-md-offset-7 col-md-5  col-lg-offset-9 col-lg-3">
                         <button type="button" ng-click="trkCtrl.removeLeaf()" class="btn btn-default" ng-class="{'disabled': !trkCtrl.selectedController}">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         <span>Remove</span>

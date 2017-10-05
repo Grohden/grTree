@@ -2,8 +2,7 @@
 
   <div class="leaf-container">
     <div class="leaf-infos"
-         ng-click="trunk.selectLeaf(leafCtrl, $event)"
-         ng-class="{'selected': leafCtrl.leafData.selected}">
+         ng-click="trunk.selectLeaf(leafCtrl, $event)">
       
       <span class="glyphicon "
             ng-click="leafCtrl.toggleExpanded($event);"
@@ -11,7 +10,8 @@
             ng-class="leaf.isExpanded() ? 'glyphicon-menu-down':'glyphicon-menu-right'">
       </span>
 
-      <span class="title">{{ leaf.label +' - '+ leaf.selected }}</span>
+      <span class="title"
+            ng-class="{'selected': leafCtrl.leafData.selected}">{{ leaf.label +' - '+ leaf.selected }}</span>
     </div>
 
     <ul class="tree-list" ng-show="leaf.expanded">
