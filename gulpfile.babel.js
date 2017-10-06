@@ -1,30 +1,23 @@
-const gulp = require("gulp");
-const cache = require("gulp-cached");
-const remember = require("gulp-remember");
+import del from "del";
+import gulp from "gulp";
+import utils from "gulp-util";
+import sass from "gulp-sass";
+import babel from "gulp-babel";
+import cache from "gulp-cached";
+import concat from "gulp-concat";
+import jshint from "gulp-jshint";
+import remember from "gulp-remember";
+import templateCache from "gulp-angular-templatecache";
 
 //Utils
 const browserSync = require('browser-sync').create();
 const bsConfigs = require("./bs-config.js");
-const utils = require("gulp-util");
 const log = utils.log;
 const error = utils.colors.red;
 const info = utils.colors.magenta;
 const success = utils.colors.green;
 
-const templateCache = require('gulp-angular-templatecache');
-const jshint = require("gulp-jshint");
-const babel = require("gulp-babel");
-const concat = require("gulp-concat");
-const sass = require("gulp-sass");
-
-
-
-//node
-const del = require("del");
-
-//App paths
-const paths = require("./files.json");
-
+const paths = require("./files.json"); //App paths
 
 function deletionHandler(cacheName){
   return function(event){
@@ -77,12 +70,6 @@ function compileSass() {
 
 }
 
-function copyIcons() {
-  return gulp
-    .src(paths.icons.source)
-    .pipe(gulp.dest(paths.icons.build));
-}
-
 function copyViews() {
   return gulp
     .src(paths.views.compile)
@@ -132,7 +119,6 @@ gulp.task("compile", [
   "compile:sass",
   "compile:templates",
   "copy:views",
-  "copy:icons"
 ]);
 
 gulp.task("watch", [
@@ -153,7 +139,6 @@ gulp.task("compile:templates", compileTemplates);
 
 //Copies
 gulp.task("copy:views", copyViews);
-gulp.task("copy:icons",copyIcons);
 
 //Watchers
 gulp.task("watch:scripts", watchScripts);

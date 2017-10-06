@@ -17,7 +17,7 @@ Then you can run `npm start` and start to develop :D
   * [ ] Setup karma+jasmine and angular mocks
   * [x] Setup scss
   * [x] Setup browsersync
-* [ ] Tree itself, trunk and leafs
+* [x] Tree itself, trunk and leafs
   * [x] Add leaf
   * [x] Select leaf
   * [x] Remove leaf
