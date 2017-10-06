@@ -13,7 +13,6 @@
         ]);
 
     /**
-     *
      * @class TrunkController
      * @constructor
      * @param {Object} $scope
@@ -28,30 +27,49 @@
         _self.currentSearch = "";
 
 
-        _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf");
-        _self.allLeafsPointer = _self.root.leafs;
+        _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf")
 
-            _self.newLeaf = new Leaf();
+        //Used leaf reference to
+        _self.shownLeaf = _self.root;
 
-        _self.selectedController = false;
+        _self.newLeaf = new Leaf();
+
+        _self.selectedLeaf = false;
 
         //Controller exposed functions
 
         /**
-         * @memberOf TrunkController
+         * Toggle the leaf children
+         * @function
+         * @param {Leaf} leaf
+         * @param {Event} [$event]
          */
-        _self.selectLeaf = function (leafController, $event) {
-            const lastSelected = $parse('selectedController.leafData')(_self);
-            const newSelected = leafController.leafData;
+        _self.toggleExpanded = function (leaf, $event) {
+
+            leaf.expanded = !leaf.expanded;
+
+            if ($event) {
+                $event.stopPropagation();
+            }
+        };
+
+        /**
+         * @memberOf TrunkController
+         * @param {Leaf} leaf
+         * @param {Event} $event
+         */
+        _self.selectLeaf = function (leaf, $event) {
+            const lastSelected = _self.selectedLeaf;
+            const newSelected = leaf;
 
             //unselect previous
             if (lastSelected) {
                 const isToggle = newSelected.selected && lastSelected.selected;
 
                 if (isToggle) {
-                    _self.selectedController = false;
+                    _self.selectedLeaf = false;
                 } else {
-                    _self.selectedController = leafController;
+                    _self.selectedLeaf = leaf;
                 }
 
                 lastSelected.selected = false;
@@ -59,7 +77,7 @@
 
             } else {
                 newSelected.selected = true;
-                _self.selectedController = leafController;
+                _self.selectedLeaf = leaf;
             }
 
             if ($event) {
@@ -75,9 +93,9 @@
             const searchString = event.currentTarget.value;
 
             if (searchString) {
-                _self.allLeafsPointer  = findHierarchy(searchString)(_self.root);
+                _self.shownLeaf  = {leafs: findHierarchy(searchString)(_self.root)};
             } else {
-                _self.allLeafsPointer = _self.root.leafs;
+                _self.shownLeaf = _self.root;
             }
         };
 
@@ -96,8 +114,8 @@
          * @memberOf TrunkController
          */
         _self.removeLeaf = function () {
-            _self.selectedController.leafData.removeFromParent();
-            _self.selectedController = false;
+            _self.selectedLeaf.leafData.removeFromParent();
+            _self.selectedLeaf = false;
         };
 
         /**
@@ -115,7 +133,9 @@
         };
 
         _self.newLeafIsInvalid = function () {
-            return !(_self.newLeaf.label && _self.newLeaf.description);
+            return !_self.newLeaf.label;
+
+            //return !(_self.newLeaf.label && _self.newLeaf.description);
         };
         /**
          * @memberOf TrunkController
@@ -126,8 +146,8 @@
             }
 
             let leafData;
-            if (_self.selectedController) {
-                leafData = _self.selectedController.leafData;
+            if (_self.selectedLeaf) {
+                leafData = _self.selectedLeaf;
             } else {
                 leafData = _self.root;
             }
