@@ -4,7 +4,7 @@
   "clean":[
     "build/**/*",
     "!build/vendor",
-    "!build/vendor/*",  
+    "!build/vendor/*",
     "!build/vendor/**/*"
   ],
   "icons":{

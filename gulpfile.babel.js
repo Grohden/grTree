@@ -8,6 +8,7 @@ import concat from "gulp-concat";
 import jshint from "gulp-jshint";
 import remember from "gulp-remember";
 import templateCache from "gulp-angular-templatecache";
+import gulpFilter from "gulp-filter";
 
 //Utils
 const browserSync = require('browser-sync').create();
@@ -17,6 +18,7 @@ const error = utils.colors.red;
 const info = utils.colors.magenta;
 const success = utils.colors.green;
 
+const guppy = require('git-guppy')(gulp);
 const paths = require("./files.json"); //App paths
 
 function deletionHandler(cacheName){
@@ -36,6 +38,14 @@ function logError(err) {
 }
 
 /* Task definitions */
+
+function preCommitLint() {
+    return gulp.src(guppy.src('pre-commit'))
+        .pipe(gulpFilter(['*.js']))
+        .pipe(jshint())
+        .pipe(jshint.reporter('jshint-stylish'))
+        .pipe(jshint.reporter('fail'));
+}
 
 function compileScripts(event) {
   log(info("compiling scripts"));
@@ -130,6 +140,7 @@ gulp.task("watch", [
   "browser-sync"
 ]);
 
+gulp.task('pre-commit', preCommitLint);
 gulp.task('browser-sync', initBrowserSync);
 
 //Compiles

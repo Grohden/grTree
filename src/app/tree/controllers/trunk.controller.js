@@ -28,7 +28,7 @@
 
 
         _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf")
-
+        
         //Used leaf reference to
         _self.shownLeaf = _self.root;
 
@@ -144,6 +144,7 @@
             if (_self.newLeafIsInvalid()) {
                 return false;
             }
+            console.log(_self.shownLeaf);
 
             let leafData;
             if (_self.selectedLeaf) {

@@ -9,13 +9,13 @@
 </head>
 
 <body ng-app="Tree" ng-strict-di>
-<tree-trunk>
-    <tree-leaf
-            ng-show="trkCtrl.root.hasChildren()"
-            index="0"
-            leaf-data="trkCtrl.shownLeaf">
-    </tree-leaf>
-</tree-trunk>
+    <tree-trunk>
+        <tree-leaf
+                ng-show="trkCtrl.root.hasChildren()"
+                index="0"
+                leaf-data="trkCtrl.shownLeaf">
+        </tree-leaf>
+    </tree-trunk>
     <input type="text" class="form-control" ng-keyup="trkCtrl.doSearch($event)"
            placeholder="Search for...">
 

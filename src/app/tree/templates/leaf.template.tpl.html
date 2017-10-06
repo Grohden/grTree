@@ -1,6 +1,6 @@
 <ul class="trunk-ul" ng-init="trunk = leafCtrl.parent">
 
-    <li class="leaf-wrapper" ng-if="leafCtrl" ng-repeat="leaf in leafCtrl.leafData.leafs">
+    <li class="leaf-wrapper" ng-if="leafCtrl.leafData.leafs.length" ng-repeat="leaf in leafCtrl.leafData.leafs">
 
         <div class="leaf-container">
             <div class="leaf-infos" ng-click="trunk.selectLeaf(leaf, $event)">
