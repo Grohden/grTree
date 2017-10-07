@@ -1,30 +1,36 @@
 @import "../../_global.variables";
 
-$icon-btn-height: $default-button-height;
-$icon-btn-width: 20px;
-$container-height: 40px;
 $transition-time: .4s;
+$main-color: #7cb342;
+$bottom-border-width: 3px;
 
 .leaf-infos {
   cursor: pointer;
   width: auto;
   padding: 10px 0px;
-  border-bottom: 1px solid transparent;
-  transition: border-bottom $transition-time;
+  margin-bottom: 5px;
+  border-bottom: $bottom-border-width solid transparent;
+  transition: border-bottom $transition-time, background $transition-time;
 
-  &.selected, &:hover{
-    border-bottom: 1px solid #7cb342;
+  &.selected {
+    border-radius: 2px;
+    background: $main-color;
+    color: white;
   }
 
-  &:hover .material-icons.trash {
-    transform: scale(1);
-    opacity: 1;
+  &:hover {
+    border-bottom: $bottom-border-width solid $main-color;
+
+    .material-icons.trash {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
 
   .material-icons.trash {
     position: absolute;
     transition: transform $transition-time, opacity ($transition-time / 2);
-    right: 20px;
+    right: 30px;
     transform: scale(0);
     opacity: 0;
   }

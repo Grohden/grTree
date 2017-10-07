@@ -4,10 +4,9 @@
         ng-repeat="leaf in leafCtrl.leafData.leafs">
 
         <div class="leaf-container">
-            <div class="leaf-infos" ng-class="{'selected': leaf.selected}">
+            <div class="leaf-infos" ng-class="{'selected': leaf.selected}" ng-click="trunk.selectLeaf(leaf, $event)">
                 <span class="title"
-                      ng-click="trunk.selectLeaf(leaf, $event)"
-                      data-position="left" data-delay="50"
+                      data-position="top" data-delay="50"
                       materialize-tooltip="!!leaf.description"
                       data-tooltip="{{::leaf.description}}">
 
