@@ -1,7 +1,8 @@
 {
   "esversion": 6,
   "globals":{
-    "angular":true
+    "angular":true,
+    "$":true
   },
   "laxbreak": true
 }

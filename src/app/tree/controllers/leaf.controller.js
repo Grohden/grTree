@@ -1,18 +1,23 @@
 (function () {
     "use strict";
-
-    angular.module("Tree").controller("LeafController", [
-        "$scope",
-        "TrunkEvents",
-        LeafController
-    ]);
-
     /**
-     * @class LeafController
-     * @alias leafCtrl
-     * @param {{leafData:Leaf, $on: Function}} $scope
-     * @param {TrunkEvents} TrunkEvents
-     */
+     * @ngdoc controller
+     * @name Tree:LeafController
+     *
+     * @description
+     * Main controller used by tree directive and other
+     * directives
+     *
+     * @requires $scope
+     * @requires TrunkEvents
+     **/
+    angular
+        .module("Tree")
+        .controller("LeafController", [
+            "$scope",
+            "TrunkEvents",
+            LeafController
+        ]);
 
     function LeafController($scope, TrunkEvents) {
 

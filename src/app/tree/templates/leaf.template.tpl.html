@@ -8,14 +8,15 @@
                 <span class="title"
                       ng-click="trunk.selectLeaf(leaf, $event)"
                       data-position="left" data-delay="50"
-                      data-tooltip="{{leaf.description}}">
+                      materialize-tooltip="!!leaf.description"
+                      data-tooltip="{{::leaf.description}}">
 
                     <i class="material-icons expansible"
                        ng-click="trunk.toggleExpanded(leaf, $event);"
                        ng-show="leaf.hasChildren()"
                        ng-class="{'expanded': leaf.expanded}">chevron_right</i>
 
-                    {{ leaf.label +' - '+ leaf.selected }}
+                    {{:: leaf.label }}
 
                 </span>
                 <i class="material-icons trash" ng-click="trkCtrl.removeLeaf()">delete</i>

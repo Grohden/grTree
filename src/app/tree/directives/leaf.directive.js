@@ -3,27 +3,33 @@
 
     /**
      * @ngdoc directive
-     * @name treeLeaf
-     * @module Tree
+     * @name Tree:treeLeaf
      *
      * @description
-     * Main tree component, it has the search and buttons, and inside, the leafs
+     * Tree leafs directive
      *
+     * @restrict E
      */
     angular
         .module("Tree")
-        .directive("treeLeaf", function () {
-            return {
-                require: {
-                    parent: "^^treeTrunk"
-                },
-                transclude: true,
-                templateUrl: "tree/templates/leaf.template.tpl.html",
-                controller: "LeafController",
-                controllerAs: "leafCtrl",
-                bindToController: {
-                    leafData: "=",
-                }
-            };
-        });
+        .directive("treeLeaf", [
+            '$timeout',
+            TreeLeaf
+        ]);
+
+    function TreeLeaf($timeout) {
+        return {
+            restrict:"E",
+            require: {
+                parent: "^^treeTrunk"
+            },
+            transclude: true,
+            templateUrl: "tree/templates/leaf.template.tpl.html",
+            controller: "LeafController",
+            controllerAs: "leafCtrl",
+            bindToController: {
+                leafData: "=",
+            },
+        };
+    }
 }());

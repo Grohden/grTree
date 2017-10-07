@@ -1,7 +1,18 @@
 (function () {
     "use strict";
 
-    /*global angular*/
+    /**
+     * @ngdoc controller
+     * @name Tree:TrunkController
+     *
+     * @description
+     * Main controller used by tree directive and other
+     * directives
+     *
+     * @requires $scope
+     * @requires Leaf
+     * @requires TrunkEvents
+     **/
     angular
         .module("Tree")
         .controller("TrunkController", [
@@ -11,14 +22,6 @@
             TrunkController
         ]);
 
-    /**
-     * @class TrunkController
-     * @constructor
-     * @param {Object} $scope
-     * @param {Leaf} Leaf
-     * @param {TrunkEvents} TrunkEvents
-     * @alias trkCtrl
-     */
     function TrunkController($scope, Leaf, TrunkEvents) {
         const _self = this;
 
