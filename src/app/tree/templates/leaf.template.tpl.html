@@ -1,19 +1,27 @@
 <ul class="leaf-ul browser-default" ng-init="trunk = leafCtrl.parent">
 
-    <li class="leaf-wrapper browser-default" ng-if="leafCtrl.leafData.leafs.length" ng-repeat="leaf in leafCtrl.leafData.leafs">
+    <li class="leaf-wrapper browser-default" ng-if="leafCtrl.leafData.leafs.length"
+        ng-repeat="leaf in leafCtrl.leafData.leafs">
 
         <div class="leaf-container">
-            <div class="leaf-infos" ng-click="trunk.selectLeaf(leaf, $event)">
+            <div class="leaf-infos" ng-class="{'selected': leaf.selected}">
+                <span class="title"
+                      ng-click="trunk.selectLeaf(leaf, $event)"
+                      data-position="left" data-delay="50"
+                      data-tooltip="{{leaf.description}}">
 
-                <i class="material-icons"
-                   ng-click="trunk.toggleExpanded(leaf, $event);"
-                   ng-show="leaf.hasChildren()"
-                   ng-class="{'expanded': leaf.expanded}">add</i>
+                    <i class="material-icons expansible"
+                       ng-click="trunk.toggleExpanded(leaf, $event);"
+                       ng-show="leaf.hasChildren()"
+                       ng-class="{'expanded': leaf.expanded}">chevron_right</i>
 
-                <h6 class="title" ng-class="{'selected': leaf.selected}">{{ leaf.label +' - '+ leaf.selected }}</h6>
+                    {{ leaf.label +' - '+ leaf.selected }}
+
+                </span>
+                <i class="material-icons trash" ng-click="trkCtrl.removeLeaf()">delete</i>
             </div>
 
-            <tree-leaf leaf-data="leaf" index="$index"></tree-leaf>
+            <tree-leaf leaf-data="leaf" ng-show="leaf.expanded" index="$index"></tree-leaf>
         </div>
     </li>
 </ul>

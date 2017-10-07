@@ -16,28 +16,46 @@
 
 <body ng-app="Tree" ng-strict-di>
 <div class="container">
-    <tree-trunk class="trunk-container">
+    <div class="row">
+        <div class="col s12">
+            <h2>GrTree</h2>
+            <h3>A simple angularJS tree</h3>
+        </div>
+    </div>
+    <div class="input-field">
+        <label for="searchInput">Search for a leaf</label>
+        <input type="text" id="searchInput" ng-disabled="!trkCtrl.root.hasChildren()"
+               ng-keyup="trkCtrl.doSearch($event)">
+    </div>
 
+
+    <tree-trunk class="trunk-container">
         <div class="row">
-            <div class="col s6">
-                <div class="input-field">
-                    <label for="searchInput">Search</label>
-                    <input type="text" id="searchInput" ng-keyup="trkCtrl.doSearch($event)">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-content tree-card-content">
+                        <span ng-show="!trkCtrl.root.hasChildren() && !trkCtrl.isInSearchMode" class="card-title">You need to add some leafs before using any feature.</span>
+                        <span class="card-title" ng-show="trkCtrl.isInSearchMode && !trkCtrl.shownLeaf.hasChildren()">No results for your search.</span>
+
+                        <tree-leaf
+                                ng-show="trkCtrl.root.hasChildren()"
+                                index="0"
+                                leaf-data="trkCtrl.shownLeaf">
+                        </tree-leaf>
+
+                    </div>
+
+                    <div class="card-action">
+                        <button type="button" class="btn btn-default light-green darken-1 waves-effect"
+                                ng-click="trkCtrl.closeAllTree()">Contract
+                        </button>
+                        <button type="button" class="btn btn-default light-green darken-1 waves-effect"
+                                ng-click="trkCtrl.openAllTree()">Expand
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <h5 ng-show="!trkCtrl.root.hasChildren() && !trkCtrl.isInSearchMode">You can add a new leaf with that plus
-            button above :D</h5>
-
-        <h5 ng-show="trkCtrl.isInSearchMode && !trkCtrl.shownLeaf.hasChildren()">No results for your search :( </h5>
-
-        <tree-leaf
-                ng-show="trkCtrl.root.hasChildren()"
-                index="0"
-                leaf-data="trkCtrl.shownLeaf">
-        </tree-leaf>
-
         <form ng-submit="trkCtrl.addLeaf()">
             <div class="row">
                 <div class="col s6">
@@ -58,31 +76,12 @@
             <!-- Just a dummy submit button to support enter key on inputs-->
             <button ng-show="::false" type="submit"></button>
         </form>
-
+        <button type="button" ng-click="trkCtrl.addLeaf()" class="btn btn-default light-green darken-1 light-green darken-1"
+                ng-class="{'disabled': trkCtrl.newLeafIsInvalid()}">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span>Add</span>
+        </button>
     </tree-trunk>
-
-
-    <button type="button" ng-click="trkCtrl.removeLeaf()" class="btn btn-default"
-            ng-class="{'disabled': !trkCtrl.selectedLeaf}">
-        <span class="" aria-hidden="true"></span>
-        <span>Remove</span>
-    </button>
-
-    <button type="button" ng-click="trkCtrl.addLeaf()" class="btn btn-default"
-            ng-class="{'disabled': trkCtrl.newLeafIsInvalid()}">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        <span>Add</span>
-    </button>
-
-    <button type="button" class="btn btn-default" ng-click="trkCtrl.closeAllTree()">
-        <span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>
-        <span class="hidden-xs">Contract</span>
-    </button>
-
-    <button type="button" class="btn btn-default " ng-click="trkCtrl.openAllTree()">
-        <span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
-        <span class="hidden-xs">Expand</span>
-    </button>
 </div>
 </body>
 </html>

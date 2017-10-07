@@ -3,27 +3,49 @@
 $icon-btn-height: $default-button-height;
 $icon-btn-width: 20px;
 $container-height: 40px;
+$transition-time: .4s;
 
 .leaf-infos {
-    cursor: pointer;
-    width: auto;
-    
-    .title {
-        padding: 3px 5px;
-        transition: background .4s;
-        border-radius: 4px;
-        
-        &.selected {
-            background: rgba(0,0,0,0.2);
-        }
+  cursor: pointer;
+  width: auto;
+  padding: 10px 0px;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom $transition-time;
+
+  &.selected, &:hover{
+    border-bottom: 1px solid #7cb342;
+  }
+
+  &:hover .material-icons.trash {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  .material-icons.trash {
+    position: absolute;
+    transition: transform $transition-time, opacity ($transition-time / 2);
+    right: 20px;
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  .title {
+    position: relative;
+    padding: 5px 24px;
+    transition: background .4s;
+    border-radius: 4px;
+
+    .material-icons.expansible {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform $transition-time;
+
+      &.expanded {
+        transform: rotate(90deg) translate(-50%, 0%);
+      }
     }
-    
-    .glyphicon-menu-right{
-        transition: transform .4s;
-        
-        &.expanded{
-            transform: rotate(90deg);
-        }
-    }
+  }
 }
 

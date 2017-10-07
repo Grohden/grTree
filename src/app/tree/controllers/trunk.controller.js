@@ -145,7 +145,6 @@
             if (_self.newLeafIsInvalid()) {
                 return false;
             }
-            console.log(_self.shownLeaf);
 
             let leafData;
             if (_self.selectedLeaf) {
