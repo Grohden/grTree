@@ -27,7 +27,7 @@
 
         _self.currentSearch = "";
 
-        _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf")
+        _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf");
 
         //Used leaf reference to
         _self.shownLeaf = _self.root;
