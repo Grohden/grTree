@@ -1,8 +1,8 @@
 (function () {
     "use strict";
-    
+
     /**
-     * @ngdoc component
+     * @ngdoc directive
      * @name treeLeaf
      * @module Tree
      *

@@ -1,4 +1,9 @@
 (function () {
+
+    /**
+     * @ngdoc Directive
+     * @name treeTrunk
+     * */
     angular
         .module("Tree")
         .directive("treeTrunk", function () {

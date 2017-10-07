@@ -4,59 +4,83 @@
     <script type="text/javascript" src="./vendor/angular/angular.js"></script>
     <script type="text/javascript" src="./templates/templates.js"></script>
     <script type="text/javascript" src="./app/app.js"></script>
+    <script type="text/javascript" src="./vendor/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="./vendor/materialize/dist/js/materialize.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="./app.css">
+    <link rel="stylesheet" type="text/css" href="./vendor/materialize/dist/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body ng-app="Tree" ng-strict-di>
+<div class="container">
     <tree-trunk>
+
+        <div class="row">
+            <div class="col s6">
+                <div class="input-field">
+                    <label for="searchInput">Search</label>
+                    <input type="text" id="searchInput" ng-keyup="trkCtrl.doSearch($event)">
+                </div>
+            </div>
+        </div>
+
+        <h5 ng-show="!trkCtrl.root.hasChildren() && !trkCtrl.isInSearchMode">You can add a new leaf with that plus
+            button above :D</h5>
+
+        <h5 ng-show="trkCtrl.isInSearchMode && !trkCtrl.shownLeaf.hasChildren()">No results for your search :( </h5>
+
         <tree-leaf
                 ng-show="trkCtrl.root.hasChildren()"
                 index="0"
                 leaf-data="trkCtrl.shownLeaf">
         </tree-leaf>
+
+        <form ng-submit="trkCtrl.addLeaf()">
+            <div class="row">
+                <div class="col s6">
+                    <div class="input-field">
+                        <label for="leafName">Leaf name</label>
+                        <input type="text" ng-model="trkCtrl.newLeaf.label" class="form-control" id="leafName" required>
+                    </div>
+                </div>
+
+                <div class="col s6">
+                    <div class="input-field">
+                        <input type="text" ng-model="trkCtrl.newLeaf.description" id="leafDescription">
+                        <label for="leafDescription">Leaf description</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Just a dummy submit button to support enter key on inputs-->
+            <button ng-show="::false" type="submit"></button>
+        </form>
+
     </tree-trunk>
-    <input type="text" class="form-control" ng-keyup="trkCtrl.doSearch($event)"
-           placeholder="Search for...">
-
-
-    <form class="form">
-        <div class="form-group">
-            <label for="leafName">Name</label>
-            <input type="text" ng-model="trkCtrl.newLeaf.label" class="form-control"
-                   id="leafName" placeholder="Leaf name here">
-        </div>
-        <div class="form-group">
-            <label for="leafDescription">Description</label>
-            <input type="text" ng-model="trkCtrl.newLeaf.description" class="form-control"
-                   id="leafDescription" placeholder="Leaf description here">
-        </div>
-    </form>
-
-    <h4 ng-hide="trkCtrl.root.hasChildren()">You can add a new leaf with that plus button above :D</h4>
 
 
     <button type="button" ng-click="trkCtrl.removeLeaf()" class="btn btn-default"
             ng-class="{'disabled': !trkCtrl.selectedController}">
-        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        <span class="" aria-hidden="true"></span>
         <span>Remove</span>
     </button>
+
     <button type="button" ng-click="trkCtrl.addLeaf()" class="btn btn-default"
             ng-class="{'disabled': trkCtrl.newLeafIsInvalid()}">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         <span>Add</span>
     </button>
 
-    <button type="button" class="btn btn-default"
-            ng-click="trkCtrl.closeAllTree()">
+    <button type="button" class="btn btn-default" ng-click="trkCtrl.closeAllTree()">
         <span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span>
         <span class="hidden-xs">Contract</span>
     </button>
-    <button type="button" class="btn btn-default "
-            ng-click="trkCtrl.openAllTree()">
+
+    <button type="button" class="btn btn-default " ng-click="trkCtrl.openAllTree()">
         <span class="glyphicon glyphicon-resize-full" aria-hidden="true"></span>
         <span class="hidden-xs">Expand</span>
     </button>
-
+</div>
 </body>
 </html>

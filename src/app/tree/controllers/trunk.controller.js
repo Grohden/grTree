@@ -6,7 +6,6 @@
         .module("Tree")
         .controller("TrunkController", [
             "$scope",
-            "$parse",
             "Leaf",
             "TrunkEvents",
             TrunkController
@@ -21,20 +20,21 @@
      * @param {TrunkEvents} TrunkEvents
      * @alias trkCtrl
      */
-    function TrunkController($scope, $parse, Leaf, TrunkEvents) {
+    function TrunkController($scope, Leaf, TrunkEvents) {
         const _self = this;
 
         _self.currentSearch = "";
 
-
         _self.root = new Leaf("Root Leaf", "Root leaf is just a dummy leaf")
-        
+
         //Used leaf reference to
         _self.shownLeaf = _self.root;
 
         _self.newLeaf = new Leaf();
 
         _self.selectedLeaf = false;
+
+        _self.isInSearchMode = false;
 
         //Controller exposed functions
 
@@ -93,8 +93,10 @@
             const searchString = event.currentTarget.value;
 
             if (searchString) {
+                _self.isInSearchMode = true;
                 _self.shownLeaf  = {leafs: findHierarchy(searchString)(_self.root)};
             } else {
+                _self.isInSearchMode = false;
                 _self.shownLeaf = _self.root;
             }
         };
