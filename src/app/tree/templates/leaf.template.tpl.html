@@ -1,18 +1,16 @@
-<ul class="trunk-ul" ng-init="trunk = leafCtrl.parent">
+<ul class="leaf-ul browser-default" ng-init="trunk = leafCtrl.parent">
 
-    <li class="leaf-wrapper" ng-if="leafCtrl.leafData.leafs.length" ng-repeat="leaf in leafCtrl.leafData.leafs">
+    <li class="leaf-wrapper browser-default" ng-if="leafCtrl.leafData.leafs.length" ng-repeat="leaf in leafCtrl.leafData.leafs">
 
         <div class="leaf-container">
             <div class="leaf-infos" ng-click="trunk.selectLeaf(leaf, $event)">
 
-                  <span class="glyphicon glyphicon-menu-right"
-                        ng-click="trunk.toggleExpanded(leaf, $event);"
-                        ng-show="leaf.hasChildren()"
-                        ng-class="{'expanded': leaf.expanded}">
-                  </span>
+                <i class="material-icons"
+                   ng-click="trunk.toggleExpanded(leaf, $event);"
+                   ng-show="leaf.hasChildren()"
+                   ng-class="{'expanded': leaf.expanded}">add</i>
 
-                    <span class="title"
-                          ng-class="{'selected': leaf.selected}">{{ leaf.label +' - '+ leaf.selected }}</span>
+                <h6 class="title" ng-class="{'selected': leaf.selected}">{{ leaf.label +' - '+ leaf.selected }}</h6>
             </div>
 
             <tree-leaf leaf-data="leaf" index="$index"></tree-leaf>

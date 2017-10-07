@@ -15,7 +15,6 @@
      * @class TrunkController
      * @constructor
      * @param {Object} $scope
-     * @param {Function} $parse
      * @param {Leaf} Leaf
      * @param {TrunkEvents} TrunkEvents
      * @alias trkCtrl
@@ -116,7 +115,7 @@
          * @memberOf TrunkController
          */
         _self.removeLeaf = function () {
-            _self.selectedLeaf.leafData.removeFromParent();
+            _self.selectedLeaf.removeFromParent();
             _self.selectedLeaf = false;
         };
 

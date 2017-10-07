@@ -9,12 +9,14 @@
 
     <link rel="stylesheet" type="text/css" href="./app.css">
     <link rel="stylesheet" type="text/css" href="./vendor/materialize/dist/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body ng-app="Tree" ng-strict-di>
 <div class="container">
-    <tree-trunk>
+    <tree-trunk class="trunk-container">
 
         <div class="row">
             <div class="col s6">
@@ -61,7 +63,7 @@
 
 
     <button type="button" ng-click="trkCtrl.removeLeaf()" class="btn btn-default"
-            ng-class="{'disabled': !trkCtrl.selectedController}">
+            ng-class="{'disabled': !trkCtrl.selectedLeaf}">
         <span class="" aria-hidden="true"></span>
         <span>Remove</span>
     </button>
