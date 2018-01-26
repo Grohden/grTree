@@ -15,7 +15,7 @@
                        ng-show="leaf.hasChildren()"
                        ng-class="{'expanded': leaf.expanded}">chevron_right</i>
 
-                    {{:: leaf.label }}
+                    <input class="browser-default" type="text" ng-model="leaf.label"/>
 
                 </span>
                 <i class="material-icons trash" ng-click="trkCtrl.removeLeaf()">delete</i>

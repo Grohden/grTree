@@ -16,6 +16,17 @@ $bottom-border-width: 3px;
     border-radius: 2px;
     background: $main-color;
     color: white;
+  
+    input.browser-default {
+      color: white;
+    }
+  }
+  
+  input.browser-default, input.browser-default:focus {
+    border: none;
+    width: 90%;
+    background: transparent;
+    outline: none;
   }
 
   &:hover {
@@ -34,7 +45,7 @@ $bottom-border-width: 3px;
     transform: scale(0);
     opacity: 0;
   }
-
+  
   .title {
     position: relative;
     padding: 5px 24px;
